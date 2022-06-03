@@ -53,7 +53,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']) {
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                <form class="m-5" method="POST" action="./admin/signin.php">
+                <form class="m-5" method="POST" action="./admin/signup.php">
                     <div class="form-group">
                       <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
                       <label for="login-username" class="label-material">Username</label>

@@ -75,7 +75,7 @@
                       </a>
                     </li>
                     <li>
-                      <a href="./Admin/login.php">
+                      <a href="./admin/">
                           <i class="iconify" data-icon="clarity:users-solid"></i>
                       </a>
                     </li>

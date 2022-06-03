@@ -8,11 +8,12 @@ if ($connect){
         $lastname = $_POST['lastname'];
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $is_admin = 1;
         if (isset($firstname)){
             if (isset($lastname)){
                 if (isset($username)){
                     if (isset($password)){
-                        $query = $db->query("INSERT INTO users (firstname, lastname, username, password) VALUES ('$firstname', '$lastname', '$username', '$password')");
+                        $query = $db->query("INSERT INTO users (firstname, lastname, username, password, is_admin) VALUES ('$firstname', '$lastname', '$username', '$password', '$is_admin')");
                         if ($query){
                             echo '<script>alert("User created!")</script>';
                             header('Location: ../login.php');
