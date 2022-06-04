@@ -1,3 +1,22 @@
+<?php
+include './admin/connect.php';
+$connect = new DB();
+if ($connect) {
+    $db = $connect->getConnect();
+    $query = $db->query("SELECT * FROM categories");
+
+
+    if ($query->num_rows > 0) {
+        while ($queryAll = $query->fetch_object()) {
+            $categories[] = $queryAll;
+        }
+    }
+
+}
+
+
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -38,26 +57,24 @@
 <body style=" background-color: black" >
 
 
-<form class=" m-5 " action="" method="post" enctype="multipart/form-data">
-
-    <div class="form-group  ">
+<form class=" m-5 " action="./admin/NewCreate.php" method="post" enctype="multipart/form-data">
+      <div class="form-group  ">
         <label for="title">Title</label>
         <input type="text"  class="form-control" id="title" name="title" placeholder="Enter title">
     </div>
     <div  class="row ">
         <div class="form-group col-6">
             <label for="title">CreateDate</label>
-            <input type="text"  class="form-control" id="title" name="create_time" placeholder="CreateDate">
+            <input type="text"  class="form-control" id="title" name="create_time" value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="CreateDate">
         </div>
         <div class="form-group  col-6">
             <label for="title">UpdateDate</label>
-            <input type="text"  class="form-control" id="title" name="update_time" placeholder="UpdateDate">
+            <input type="text"  class="form-control" id="title" name="update_time" value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="UpdateDate">
         </div>
     </div>
     <div class="form-group  ">
         <label for="category">Category</label>
         <select class="form-control" id="category" name="category_id">
-
             <option selected disabled hidden> select Category </option>
             <?php if (isset($categories)){
                 foreach ($categories as $category){ ?>

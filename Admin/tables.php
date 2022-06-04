@@ -1,3 +1,34 @@
+<?php
+session_start();
+include './admin/connect.php';
+$connect = new DB();
+if ($connect) {
+    $db = $connect->getConnect();
+    $query = $db->query("SELECT * FROM products");
+
+
+    if ($query->num_rows > 0) {
+        while ($queryAll = $query->fetch_object()) {
+            $products[] = $queryAll;
+        }
+    }
+
+}
+
+
+?>
+
+<?php
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -249,17 +280,33 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                        <?php
+                                        if (isset($products)) {
+                                            foreach ($products as $key => $product) {
+                                                $cat = $db->query("select  name from categories where id= $product->category_id");
+                                                $cat1 = $cat->fetch_object();
+                                                ?>
+                                                <tr>
+                                                    <th scope="row"><?= ++$key ?></th>
+                                                    <td><?= $product->title ?></td>
+                                                    <td class=" "><img style="width: 50px; height: 50px; border-radius: 50%;" src=" <?= $product->image ?>" alt=""></td>
+                                                    <td><?= $product->create_time ?></td>
+                                                    <td><?= $product->update_time ?></td>
+                                                    <td>
+                                                        <div style=" padding: 10px 10px 10px 10px; border-radius: 30px; "; class="badge  badge-info badge-shadow"><?= $cat1->name ?></div>
+                                                    </td>
+                                                    <td>
 
+                                                        <div style=" padding: 8px 10px 8px 10px; border-radius: 30px; ";   class="badge  <?= ($product->status == 1) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($product->status == 1) ? 'Active' : 'deactive' ?></div>
+                                                    </td>
+                                                    <td style="width: 220px !important;">
+                                                        <a href=" ../single.php" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>
+                                                        <a href="./admin/NewEdit.php ?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-success">Edit</a>
+                                                        <a href=" ./admin/NewDelete.php?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-danger">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                        } ?>
                                         </tbody>
                                     </table>
                                 </div>
