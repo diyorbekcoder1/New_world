@@ -67,7 +67,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']) {
                         </div>
 
                         <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                        <div style=" text-align: center">   </ form ><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.php" class="signup">Signup</a></div>
+                        <div style=" text-align: center">   </ form ><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account?</div>
 
                 </div>
               </div>

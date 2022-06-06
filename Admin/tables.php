@@ -21,6 +21,15 @@ if ($connect) {
         }
     }
 
+    $user= [];
+    $db3query = $db->query("SELECT * FROM users");
+    if ($db3query->num_rows > 0) {
+        while ($queryAll = $db3query->fetch_object()) {
+            $user[] = $queryAll;
+        }
+    }
+
+
 //    echo "\n";
 //    print_r($categories);
 
@@ -310,10 +319,24 @@ if ($connect) {
 
                                                         <div style=" padding: 8px 10px 8px 10px; border-radius: 30px; ";   class="badge  <?= ($product->status == 1) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($product->status == 1) ? 'Active' : 'deactive' ?></div>
                                                     </td>
-                                                    <td style="width: 220px !important;">
-                                                        <a href=" ../single.php" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>
-                                                        <a href="./admin/NewEdit.php ?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-success">Edit</a>
-                                                        <a href=" ./admin/NewDelete.php?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-danger">Delete</a>
+                                                    <td style="width: 220px  !important;">
+
+                                                        <form  style="display: inline;" method="POST" action="./admin/NewEdit.php">
+                                                            <input hidden type="text" name="id" value="<?=$product->id?>">
+                                                            <button style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" type="submit" name="edit">Edit</button>
+                                                        </form>
+                                                        <form  style="display: inline;" method="POST"  action="./admin/NewDelete.php">
+                                                            <input hidden type="text" name="id" value="<?=$product->id?>">
+                                                            <button style=" padding: 5px 15px 5px 15px;" class="btn btn-outline-danger" type="submit" name="delete">Delete</button>
+                                                        </form>
+
+
+
+
+
+<!--                                                        <a href=" ../single.php" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>-->
+<!--                                                        <a href="./admin/NewEdit.php ?id=--><?//= $product->id ?><!--"  style="padding: 5px 10px 5px 10px;" class="btn btn-outline-success">Edit</a>-->
+<!--                                                        <a href=" ./admin/NewDelete.php?id=--><?//= $product->id ?><!--" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-danger">Delete</a>-->
                                                     </td>
                                                 </tr>
                                             <?php }
@@ -346,16 +369,14 @@ if ($connect) {
                                             </td>
                                             <td style="width: 220px ">
 
-                                                <form >
 
-                                                </form>
-                                                <form  style="display: inline;" action="./category_create.php">
+                                                <form  style="display: inline;" method="POST" action="./category_create.php">
                                                     <input hidden type="text" name="id" value="<?=$category->id?>">
-                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-success" type="submit" name="edit">Edit</button>
+                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" type="submit" name="edit">Edit</button>
                                                 </form>
-                                                <form  style="display: inline;" action="./admin/category_delete.php">
-                                                    <input hidden type="text" name="id" value="3">
-                                                    <button style=" padding: 5px 15px 5px 15px;" class="btn btn-danger" type="submit" name="delete">Delete</button>
+                                                <form  style="display: inline;" method="POST"  action="./admin/category_delete.php">
+                                                    <input hidden type="text" name="id" value="<?=$category->id?>">
+                                                    <button style=" padding: 5px 15px 5px 15px;" class="btn btn-outline-danger" type="submit" name="delete">Delete</button>
                                                 </form>
 
                                             </td>
@@ -383,57 +404,22 @@ if ($connect) {
 
                                         </thead>
                                         <tbody >
+                                        <?php foreach ($user as $key => $users): ?>
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td>Diyorbek</td>
-                                                <td>Fazliddinov</td>
-                                                <td>fazliddinov</td>
+                                                <th scope="row"><?= ++$key ?></th>
+                                                <td><?= $users->firstname ?></td>
+                                                <td><?= $users->lastname ?></td>
+                                                <td><?= $users->username ?></td>
                                                 <td>
 
-                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
+                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "   class="badge  <?= ($users->is_admin == 1) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($users->is_admin == 1) ? 'Active' : 'deactive' ?></div>
                                                 </td>
                                                 <td>
 
-                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
+                                                    <div style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" class="badge  <?= ($users->status == 1) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($users->status == 1) ? 'Active' : 'Active' ?></div>
                                                 </td>
-
-
-
                                             </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jo'rabek</td>
-                                                <td>Yusupov</td>
-                                                <td>yusupov</td>
-                                                <td>
-
-                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
-                                                </td>
-                                                <td>
-
-                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
-                                                </td>
-
-
-
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Bahodir</td>
-                                                <td>Hojiyev</td>
-                                                <td>hojiyev</td>
-                                                <td>
-
-                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-danger badge-shadow">No active</div>
-                                                </td>
-                                                <td>
-
-                                                    <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
-                                                </td>
-
-
-
-                                            </tr>
+                                        <?php endforeach; ?>
                                         </tbody>
 
                                     </table>

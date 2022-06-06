@@ -1,21 +1,32 @@
 <?php
 include './admin/connect.php';
 $connect = new DB();
+
 if ($connect) {
+    if ($_GET) {
+        $id = $_GET['id'];
+    }
     $db = $connect->getConnect();
-    $query = $db->query("SELECT * FROM categories");
+    $queryCategory = $db->query("SELECT * FROM categories");
+    $queryProduct = $db->query("SELECT * FROM products where id = " . $id . " LIMIT 1");
 
 
-    if ($query->num_rows > 0) {
-        while ($queryAll = $query->fetch_object()) {
+    if ($queryCategory->num_rows > 0) {
+        while ($queryAll = $queryCategory->fetch_object()) {
             $categories[] = $queryAll;
         }
     }
-
+    if ($queryProduct->num_rows > 0) {
+        while ($queryAll = $queryProduct->fetch_object()) {
+            $products[] = $queryAll;
+        }
+    }
+    $products = $products[0];
 }
 
 
 ?>
+
 
 
 
@@ -59,9 +70,9 @@ if ($connect) {
 
 
 <form class=" m-5 " action="./admin/NewCreate.php" method="post" enctype="multipart/form-data">
-      <div class="form-group  ">
+    <div class="form-group  ">
         <label for="title">Title</label>
-        <input type="text"  class="form-control" id="title" name="title" placeholder="Enter title">
+        <input type="text"  class="form-control" id="title" name="title"  value="<?= $products->title ?>" placeholder="Enter title">
     </div>
     <div  class="row ">
         <div class="form-group col-6">
@@ -99,7 +110,7 @@ if ($connect) {
     </div>
 
 
-    <button type="submit" class="btn btn-primary ">Create Post</button>
+    <button type="submit" class="btn btn-primary ">Edit Post</button>
 </form>
 
 
@@ -118,14 +129,14 @@ if ($connect) {
 
 
 
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="js/charts-home.js"></script>
-    <script src="js/front.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper.js/umd/popper.min.js"> </script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="js/charts-home.js"></script>
+<script src="js/front.js"></script>
 </body>
 
 </html>

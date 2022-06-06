@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head> 
@@ -47,61 +52,59 @@
   </head>
 
   <body>
-  <div class="loader"></div>
-  <div id="app">
-      <section class="section">
-          <div class="container mt-5">
+  <div class="login-page">
+      <div class="container d-flex align-items-center">
+          <div class="form-holder has-shadow">
               <div class="row">
-                  <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-                      <div class="card card-primary">
-                          <div class="card-header">
-                              <h4>Register</h4>
+                  <!-- Logo & Information Panel-->
+                  <div class="col-lg-6">
+                      <div class="info d-flex align-items-center">
+                          <div class="content">
+                              <div class="logo">
+                                  <h1>Dashboard</h1>
+                              </div>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                           </div>
-                          <div class="card-body">
-                              <form method="POST" action=>
-                                  <div class="row">
-                                      <div class="form-group col-6">
-                                          <label for="frist_name">First Name</label>
-                                          <input id="frist_name" type="text" class="form-control" name="firstname" required autofocus>
-                                      </div>
-                                      <div class="form-group col-6">
-                                          <label for="last_name">Last Name</label>
-                                          <input id="last_name" type="text" class="form-control" required name="lastname">
-                                      </div>
+                      </div>
+                  </div>
+                  <!-- Form Panel    -->
+                  <div class="col-lg-6 bg-white">
+                      <div class="form d-flex align-items-center">
+                          <div class="content">
+                              <form class="text-left form-validate" method="POST" action="../Admin/admin/signin.php">
+                                  <div class="form-group-material">
+                                      <input id="register-username" type="text" name="firstname" required data-msg="Please enter your username" class="input-material">
+                                      <label for="register-username" class="label-material">Firstname</label>
                                   </div>
-                                  <div class="form-group">
-                                      <label for="email">Username</label>
-                                      <input id="email" type="username" class="form-control" required name="username">
-                                      <div class="invalid-feedback">
-                                      </div>
+                                  <div class="form-group-material">
+                                      <input id="register-email" type="text" name="lastname" required data-msg="Please enter a valid email address" class="input-material">
+                                      <label for="register-email" class="label-material">Lastname</label>
                                   </div>
-
-                                  <div class="form-group">
-                                      <label>Password</label>
-                                      <input type="password" class="form-control" required name="password">
+                                  <div class="form-group-material">
+                                      <input id="register-password" type="text" name="username" required data-msg="Please enter your password" class="input-material">
+                                      <label for="register-password" class="label-material">Username     </label>
                                   </div>
-                                  <div class="form-group">
-                                      <div class="control-label">Register Admin</div>
-                                      <label class="custom-switch mt-2">
-                                          <input type="checkbox" name="reg_admin" value="1"  class="custom-switch-input">
-                                          <span class="custom-switch-indicator"></span>
-
-                                      </label>
+                                  <div class="form-group-material">
+                                      <input id="register-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                                      <label for="register-password" class="label-material">Password     </label>
                                   </div>
-
-                                  <div class="form-group">
-                                      <button type="submit" name="reg" class="btn btn-primary btn-lg btn-block">
-                                          Register
-                                      </button>
+                                  <div class="form-group terms-conditions text-center">
+                                      <input id="register-agree" name="is_admin" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
+                                      <label for="register-agree">I agree with the terms and policy</label>
+                                  </div>
+                                  <div class="form-group text-center">
+                                      <button type="submit" class="btn btn-primary text-center col-3">Submit</button>
                                   </div>
                               </form>
                           </div>
-
                       </div>
                   </div>
               </div>
           </div>
-      </section>
+      </div>
+      <div class="copyrights text-center">
+          <p >2022 &copy; Your company. Download From <a target="_blank" href="https://templateshub.net">Templates Hub</a></p>
+      </div>
   </div>
 
   <!-- JavaScript files-->

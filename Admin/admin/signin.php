@@ -20,29 +20,29 @@ if ($connect){
                         }
                         else {
                             echo '<script>confirm("User not created!")</script>';
-                            header('Location: ../register.php');
+                            header('Location: ../adminRegister.php');
                         }
                     }
                     else {
                         echo '<script>alert("Enter password!")</script>';
-                        header('Location: ../register.php');
+                        header('Location: ../adminRegister.php');
 
                     }
                 }
                 else {
                     echo '<script>confirm("Enter username!")</script>';
-                    header('Location: ../register.php');
+                    header('Location: ../adminRegister.php');
 
                 }
             }
             else {
                 echo '<script>confirm("Enter lastname!")</script>';
-                header('Location: ../register.php');
+                header('Location: ../adminRegister.php');
             }
         }
         else {
             echo '<script>confirm("Enter Firstname!")</script>';
-            header('Location: ../register.php');
+            header('Location: ../adminRegister.php');
         }
     }
 

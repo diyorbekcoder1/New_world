@@ -4,6 +4,7 @@ $connect = new DB();
 if ($connect){
     $db = $connect->getConnect();
     if (isset($_GET) && isset($_GET['id'])) {
+
         $id = $_GET['id'];
         $queryProduct = $db->query("SELECT image FROM products where id = " . $id . " LIMIT 1");
         if ($queryProduct->num_rows > 0) {

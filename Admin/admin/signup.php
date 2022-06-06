@@ -26,7 +26,7 @@ if ($connect) {
             $_SESSION['is_admin'] = $user->is_admin == 1;
             $_SESSION['user'] = $user;
 
-            header('Location: ');
+            header('Location: ../index.php ');
         }
 
 
