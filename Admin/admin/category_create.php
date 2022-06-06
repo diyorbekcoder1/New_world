@@ -1,5 +1,5 @@
 <?php
-require "./connect.php";
+require "../admin/connect.php";
 $connect = new DB;
 if ($connect) {
     $db = $connect->getConnect();
@@ -8,14 +8,14 @@ if ($connect) {
         $category_name = $_POST['name'];
         $category_status = $_POST['status'];
 //        print_r($category_id);
-        $category = $db->query("UPDATE categories SET Name=\"$category_name\",status='$category_status' where id=$category_id");
+        $category = $db->query("insert into categories (Name, status) values (\"$category_name\",\"$category_status\")");
 
         if ($category) {
-            header("Location: /admin");
+            header("Location: ../tables.php");
         } else {
             echo "data not save" . $db->error;
         }
-        }
+    }
 }else {
     echo "No Connection";
 }

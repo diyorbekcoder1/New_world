@@ -13,6 +13,17 @@ if ($connect) {
         }
     }
 
+    $categories = [];
+    $db2query = $db->query("SELECT * FROM categories");
+    if ($db2query->num_rows > 0) {
+        while ($queryAll = $db2query->fetch_object()) {
+            $categories[] = $queryAll;
+        }
+    }
+
+//    echo "\n";
+//    print_r($categories);
+
 }
 
 
@@ -326,97 +337,30 @@ if ($connect) {
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($categories as $key => $category): ?>
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Travel</td>
+                                            <th scope="row"><?= ++$key ?></th>
+                                            <td><?=$category->Name?></td>
                                             <td>
-                                                <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
+                                                <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow"><?=$category->status ? "active" : "no active"?></div>
                                             </td>
                                             <td style="width: 220px ">
 
                                                 <form >
 
                                                 </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="1">
+                                                <form  style="display: inline;" action="./category_create.php">
+                                                    <input hidden type="text" name="id" value="<?=$category->id?>">
                                                     <button style=" padding: 5px 15px 5px 15px; " class="btn btn-success" type="submit" name="edit">Edit</button>
                                                 </form>
-                                                <form  style="display: inline;">
+                                                <form  style="display: inline;" action="./admin/category_delete.php">
                                                     <input hidden type="text" name="id" value="3">
                                                     <button style=" padding: 5px 15px 5px 15px;" class="btn btn-danger" type="submit" name="delete">Delete</button>
                                                 </form>
 
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Sports</td>
-                                            <td>
-                                                <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
-                                            </td>
-                                            <td style="width: 220px ">
-
-                                                <form >
-
-                                                </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="1">
-                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-success" type="submit" name="edit">Edit</button>
-                                                </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="3">
-                                                    <button style=" padding: 5px 15px 5px 15px;" class="btn btn-danger" type="submit" name="delete">Delete</button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>World</td>
-                                            <td>
-                                                <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
-                                            </td>
-                                            <td style="width: 220px ">
-
-                                                <form >
-
-                                                </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="1">
-                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-success" type="submit" name="edit">Edit</button>
-                                                </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="3">
-                                                    <button style=" padding: 5px 15px 5px 15px;" class="btn btn-danger" type="submit" name="delete">Delete</button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Business</td>
-                                            <td>
-                                                <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow">Active</div>
-                                            </td>
-                                            <td style="width: 220px ">
-
-                                                <form >
-
-                                                </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="1">
-                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-success" type="submit" name="edit">Edit</button>
-                                                </form>
-                                                <form  style="display: inline;">
-                                                    <input hidden type="text" name="id" value="3">
-                                                    <button style=" padding: 5px 15px 5px 15px;" class="btn btn-danger" type="submit" name="delete">Delete</button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-
-
-
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>
