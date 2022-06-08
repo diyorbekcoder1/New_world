@@ -1,49 +1,106 @@
 <?php
-require "./connect.php";
-$connect = new DB;
+include './connect.php';
+$connect = new DB();
 if ($connect) {
     $db = $connect->getConnect();
     if (isset($_POST)) {
-        $title1 = $_POST['title'];
-        $image = $_FILES['image'];
+        $id = $_POST['id'];
+        $title = $_POST['title'];
         $category_id = $_POST['category_id'];
-        $status = $_POST['status'];
         $update_time = $_POST['update_time'];
-
-        if (isset($_FILES['image'])) {
-            $folder_read = '/assets/images/news/';
-            $folder = '../../assets/images/news/';
-            $path = $folder . $_FILES['image']['name'];
-            if (file_exists($path)) {
-                unlink($path);
-                if ($_FILES['image']['size'] > 50000000) {
-                    echo "faylni hajmi 5mb dan ortib ketdi";
-                    die();
-                } else {
-                    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-                    if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'bmp') {
-                        if (move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
-                            $path2 = $folder_read . $_FILES['image']['name'];
-                        } else {
-                            echo "error IMAGE";
-                        }
-                    }
-                }
-
-            } else {
-                echo "Image null!!";
-            }
-            if ($title1 &&  $category_id && $update_time && $status) {
-                $news = $db->query("UPDATE products SET title=\"$title1\",category_id='$category_id' ,update_time='$update_time', status = '$status' where id=$id ");
-                if ($news) {
-                    header("Location: /admin");
-                } else {
-                    echo "data not save" . $db->error;
-                }
-            } else {
-                echo "no date";
+        $queryProduct = $db->query("SELECT image FROM products where id = " . $id . " LIMIT 1");
+        if ($queryProduct->num_rows > 0) {
+            while ($queryAll = $queryProduct->fetch_object()) {
+                $products[] = $queryAll;
             }
         }
+        $product = $products[0];
+        /*create product*/
+
+        if (isset($_FILES['image']) && $_FILES['image']['name'] != null && $_FILES['image']['size'] != 0) {
+            $image = $_FILES['image'];
+            $image_name = $image['name'];
+            $folder_read = '/assets/images/news/';
+            $folder = '../../assets/images/news/';
+            $path = $folder . $image['name'];
+            $oldpath = $folder . $product->image;
+            if (file_exists($oldpath)) {
+                unlink($oldpath) or die("Couldn't delete file");
+            }
+
+            if ($image['size'] > 5000000) {
+                echo '<script>alert("File size is too big!")</script>';
+            } else {
+                $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+                if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'bmp') {
+                    $image_name = uniqid() . '.' . $ext;
+                    if (move_uploaded_file($_FILES['image']['tmp_name'], $folder . $image_name)) {
+                        if (isset($title)) {
+                            if (isset($description)) {
+                                if (isset($price)) {
+                                    if (isset($category_id)) {
+                                        $query = $db->query("UPDATE products SET title = '$title', category_id='$category_id', update_time = '$update_time', image = '$image_name',  WHERE id = '$id'");
+                                        if ($query) {
+
+                                            echo '<script>alert("Product created!")</script>';
+                                            header('Location: ../index.php');
+                                        } else {
+                                            echo '<script>alert("Product not created!")</script>';
+                                        }
+                                    } else {
+                                        echo '<script>alert("Please select category!")</script>';
+                                    }
+
+                                } else {
+                                    echo '<script>alert("Enter price!")</script>';
+                                }
+                            } else {
+                                echo '<script>alert("Enter description!")</script>';
+                            }
+                        } else {
+                            echo '<script>alert("Please enter title!")</script>';
+                        }
+                    }
+
+
+                } else {
+                    echo '<script>alert("Error!")</script>';
+                }
+            }
+        }
+    } else {
+        if (isset($title)) {
+            if (isset($description)) {
+                if (isset($price)) {
+                    if (isset($category_id)) {
+                        $query = $db->query("Update products SET title='$title', price='$price', description='$description', category_id='$category_id' WHERE id='$id'");
+                        if ($query) {
+
+                            echo '<script>alert("Product updated")</script>';
+                            header('Location: ../index.php');
+                        } else {
+                            echo '<script>alert("Product not updated!")</script>';
+                        }
+                    } else {
+                        echo '<script>alert("Please select category!")</script>';
+                    }
+
+                } else {
+                    echo '<script>alert("Enter price!")</script>';
+                }
+            } else {
+                echo '<script>alert("Enter description!")</script>';
+            }
+        } else {
+            echo '<script>alert("Please enter title!")</script>';
+        }
     }
+
+
+
+} else {
+    echo '<script>alert("db Connection Error!")</script>';
 }
+
+
 ?>

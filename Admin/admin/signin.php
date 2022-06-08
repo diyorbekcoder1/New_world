@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "./connect.php";
 $connect = new DB();
 if ($connect){
@@ -16,7 +17,7 @@ if ($connect){
                         $query = $db->query("INSERT INTO users (firstname, lastname, username, password, is_admin) VALUES ('$firstname', '$lastname', '$username', '$password', '$is_admin')");
                         if ($query){
                             echo '<script>alert("User created!")</script>';
-                            header('Location: ../login.php');
+                            header('Location: ../index.php');
                         }
                         else {
                             echo '<script>confirm("User not created!")</script>';

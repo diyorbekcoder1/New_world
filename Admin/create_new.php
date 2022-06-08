@@ -2,6 +2,7 @@
 include './admin/connect.php';
 $connect = new DB();
 if ($connect) {
+
     $db = $connect->getConnect();
     $query = $db->query("SELECT * FROM categories");
 
@@ -16,8 +17,6 @@ if ($connect) {
 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html>

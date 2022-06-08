@@ -1,18 +1,17 @@
 <?php
 include './admin/connect.php';
 $connect = new DB();
-
 if ($connect) {
     if ($_GET) {
         $id = $_GET['id'];
     }
     $db = $connect->getConnect();
-    $queryCategory = $db->query("SELECT * FROM categories");
+    $query = $db->query("SELECT * FROM categories");
     $queryProduct = $db->query("SELECT * FROM products where id = " . $id . " LIMIT 1");
 
 
-    if ($queryCategory->num_rows > 0) {
-        while ($queryAll = $queryCategory->fetch_object()) {
+    if ($query->num_rows > 0) {
+        while ($queryAll = $query->fetch_object()) {
             $categories[] = $queryAll;
         }
     }
@@ -22,11 +21,11 @@ if ($connect) {
         }
     }
     $products = $products[0];
+
 }
 
 
 ?>
-
 
 
 
@@ -72,7 +71,7 @@ if ($connect) {
 <form class=" m-5 " action="./admin/NewCreate.php" method="post" enctype="multipart/form-data">
     <div class="form-group  ">
         <label for="title">Title</label>
-        <input type="text"  class="form-control" id="title" name="title"  value="<?= $products->title ?>" placeholder="Enter title">
+        <input value="<?= $products->title ?? '' ?>" type="text"  class="form-control" id="title" name="title"   placeholder="Enter title">
     </div>
     <div  class="row ">
         <div class="form-group col-6">
@@ -90,14 +89,16 @@ if ($connect) {
             <option selected disabled hidden> select Category </option>
             <?php if (isset($categories)){
                 foreach ($categories as $category){ ?>
-                    <option value="<?= $category->id ?>"><?= $category->Name ?></option>
+                    <option value="<?= $category->id ?>" <?= $products->category_id == $category->id ? 'selected' : '' ?>><?= $category->Name ?></option>
                 <?php }
             } ?>
         </select>
     </div>
-    <div class="form-group ">
+    <div class="form-group m-2">
         <label for="Image">Image</label> <br>
-        <input type="file" class="form-control-file" id="image" name="image">
+        <img style="width: 50px; height: 50px; border-radius: 50%;" src="./assets/images/<?= $products->image ?>"
+             alt="">
+        <br> <input type="file" class="form-control-file" id="image" name="image">
     </div>
     <div class="form-group">
         <label for="status">Status</label>
