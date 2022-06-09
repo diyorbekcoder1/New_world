@@ -1,28 +1,32 @@
 <?php
 include './admin/connect.php';
 $connect = new DB();
+$items = [];
+
 if ($connect) {
-    if ($_GET) {
-        $id = $_GET['id'];
-    }
     $db = $connect->getConnect();
-    $query = $db->query("SELECT * FROM categories");
-    $queryProduct = $db->query("SELECT * FROM products where id = " . $id . " LIMIT 1");
-
-
-    if ($query->num_rows > 0) {
-        while ($queryAll = $query->fetch_object()) {
+    if(isset($_GET['id']) ){
+        $id = $_GET['id'];
+        $products = $db->query("select * from products where id = $id");
+        if ($products->num_rows > 0) {
+            while ($items = $products->fetch_object()) {
+                $n[] = $items;
+            }
+        }
+    }
+    $categories = $db->query("select id, name from categories");
+          if ($categories->num_rows > 0) {
+        while ($queryAll = $categories->fetch_object()) {
             $categories[] = $queryAll;
         }
     }
-    if ($queryProduct->num_rows > 0) {
-        while ($queryAll = $queryProduct->fetch_object()) {
-            $products[] = $queryAll;
-        }
-    }
-    $products = $products[0];
 
 }
+
+
+
+
+
 
 
 ?>
@@ -68,10 +72,15 @@ if ($connect) {
 <body style=" background-color: black" >
 
 
-<form class=" m-5 " action="./admin/NewCreate.php" method="post" enctype="multipart/form-data">
+<form class=" m-5 " action="./admin/NewEdit.php" method="post" enctype="multipart/form-data">
     <div class="form-group  ">
+        <input type="text" class="form-control" name="id" value="<?= $n->id ?>">
+
+    </div>
+
+   <div class="form-group  ">
         <label for="title">Title</label>
-        <input value="<?= $products->title ?? '' ?>" type="text"  class="form-control" id="title" name="title"   placeholder="Enter title">
+        <input value="<?= $n->title ?? '' ?>" type="text"  class="form-control" id="title" name="title"   placeholder="Enter title">
     </div>
     <div  class="row ">
         <div class="form-group col-6">
@@ -89,14 +98,14 @@ if ($connect) {
             <option selected disabled hidden> select Category </option>
             <?php if (isset($categories)){
                 foreach ($categories as $category){ ?>
-                    <option value="<?= $category->id ?>" <?= $products->category_id == $category->id ? 'selected' : '' ?>><?= $category->Name ?></option>
+                    <option value="<?= $category->id ?>" <?= $n->category_id == $category->id ? 'selected' : '' ?>><?= $category->Name ?></option>
                 <?php }
             } ?>
         </select>
     </div>
     <div class="form-group m-2">
         <label for="Image">Image</label> <br>
-        <img style="width: 50px; height: 50px; border-radius: 50%;" src="./assets/images/<?= $products->image ?>"
+        <img style="width: 50px; height: 50px; border-radius: 50%;" src="./assets/images/<?= $n->image ?>"
              alt="">
         <br> <input type="file" class="form-control-file" id="image" name="image">
     </div>
@@ -111,7 +120,7 @@ if ($connect) {
     </div>
 
 
-    <button type="submit" class="btn btn-primary ">Edit Post</button>
+    <button type="submit" class="btn btn-primary " name="newsedit">Edit Post</button>
 </form>
 
 

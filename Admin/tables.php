@@ -237,9 +237,9 @@ if ($connect) {
         <nav id="sidebar">
             <!-- Sidebar Header-->
             <div class="sidebar-header d-flex align-items-center">
-                <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                <div class="avatar"><img src="img/avatar-2.jpg"  alt="..." class="img-fluid rounded-circle"></div>
                 <div class="title">
-                    <h1 class="h5">Mark Stephen</h1>
+                    <h1 class="h5">Devbek</h1>
                     <p>Web Designer</p>
                 </div>
             </div>
@@ -356,6 +356,8 @@ if ($connect) {
                                                 <div style=" padding: 8px 10px 8px 10px; border-radius: 30px; ";   class="badge  <?= ($category->status == true) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($category->status == true) ? 'Active' : 'deactive' ?></div>
                                             </td>
                                             <td style="width: 220px ">
+
+
                                                     <form  style="display: inline;" method="POST" action="./category_create.php">
                                                     <input hidden type="text" name="id" value="<?=$category->id?>">
                                                     <button style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" type="submit" name="edit" >Edit</button>
