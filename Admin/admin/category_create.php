@@ -7,7 +7,7 @@ if ($connect) {
         $category_id =$_POST['id'];
         $category_name = $_POST['name'];
         $category_status = $_POST['status'];
-        $category = $db->query("insert into categories (Name, status) values (\"$category_name\",\"$category_status\")");
+        $category = $db->query("insert into categories (name, status) values (\"$category_name\",\"$category_status\")");
 
 
         if ($category) {

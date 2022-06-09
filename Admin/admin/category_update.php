@@ -8,12 +8,12 @@ if ($connect) {
 
 
 
-    if (isset($_POST['update'])) {
+    if (isset($_POST)) {
         $Name = $_POST['name'];
         $id = $_POST['id'];
         $status = $_POST['status'];
         if ($Name && $id && $status) {
-            $news = $db->query("UPDATE categories SET Name='$Name',status=$status where id = $id ");
+            $news = $db->query("UPDATE categories SET name='$Name',status=$status where id = $id ");
             if ($news) {
                 header("Location: /admin/");
             } else {

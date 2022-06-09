@@ -287,7 +287,7 @@ if ($connect) {
                                 <div class="title"><strong>News</strong> <strong>|</strong> <a href="create_new.php"><div style="color: black;font-weight: bold" class=" ml-2 btn btn-success">News add</div></a>   </div>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
-                                        <thead>
+                                        <thead style="color:white">
                                         <tr>
                                             <th>ID</th>
                                             <th>Title</th>
@@ -353,7 +353,7 @@ if ($connect) {
                                             <th scope="row"><?= ++$key ?></th>
                                             <td><?=$category->Name?></td>
                                             <td>
-                                                <div style=" padding: 10px 20px 10px 20px; border-radius: 30px; "; class="badge  badge-success badge-shadow"><?=$category->status ? "active" : "no active"?></div>
+                                                <div style=" padding: 8px 10px 8px 10px; border-radius: 30px; ";   class="badge  <?= ($category->status == true) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($category->status == true) ? 'Active' : 'deactive' ?></div>
                                             </td>
                                             <td style="width: 220px ">
                                                     <form  style="display: inline;" method="POST" action="./category_create.php">
