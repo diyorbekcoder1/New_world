@@ -1,21 +1,26 @@
 <?php
-include "./connect.php";
-$connect = new DB();
+require "./connect.php";
+$connect = new DB;
+
+
 if ($connect) {
     $db = $connect->getConnect();
-    if (isset($_POST)) {
-        $category_id =$_POST['id'];
-        $category_name = $_POST['name'];
-        $category_status = $_POST['status'];
-        $category = $db->query("UPDATE categories SET Name=\"$category_name\",status='$category_status' where id=$category_id");
 
-        if ($category) {
-            header("Location: ../tables.php");
+
+
+    if (isset($_POST['update'])) {
+        $Name = $_POST['name'];
+        $id = $_POST['id'];
+        $status = $_POST['status'];
+        if ($Name && $id && $status) {
+            $news = $db->query("UPDATE categories SET Name='$Name',status=$status where id = $id ");
+            if ($news) {
+                header("Location: /admin/");
+            } else {
+                echo "data not save" . $db->error;
+            }
         } else {
-            echo "data not save" . $db->error;
+            echo "no date";
         }
-        }
-}else {
-    echo "No Connection";
+    }
 }
-?>

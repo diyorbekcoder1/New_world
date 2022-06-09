@@ -7,7 +7,7 @@ if ($connect) {
     $delete = $_POST['delete'];
     $c_id = $_POST['id'];
     if (isset($delete)) {
-        $cat = $db->query(" DELETE FROM categories WHERE id = $c_id ");
+        $cat = $db->query(" DELETE FROM categories WHERE id = $c_id");
         if ($cat) {
             header("Location: ../tables.php");
         } else {

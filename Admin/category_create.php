@@ -1,11 +1,16 @@
 <?php
 include "./admin/connect.php";
-$connect = new DB;
+$connect = new DB ;
+
 $publicCategory =null;
+
 if ($connect) {
     $db = $connect->getConnect();
     if (isset($_GET) && isset($_GET['edit'])) {
     $category_id = $_GET['id'];
+
+
+
         $publicCategory = $db->query(" SELECT * FROM categories where id=$category_id")->fetch_object();
     }
 
