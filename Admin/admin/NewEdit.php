@@ -8,6 +8,7 @@ if ($connect) {
         $title = $_POST['title'];
         $category_id = $_POST['category_id'];
         $update_time = $_POST['update_time'];
+        $status = $_POST['status'];
         $queryProduct = $db->query("SELECT image FROM products where id = " . $id . " LIMIT 1");
         if ($queryProduct->num_rows > 0) {
             while ($queryAll = $queryProduct->fetch_object()) {
@@ -36,8 +37,8 @@ if ($connect) {
                     $image_name = uniqid() . '.' . $ext;
                     if (move_uploaded_file($_FILES['image']['tmp_name'], $folder . $image_name)) {
                         if (isset($title)) {
-                            if (isset($description)) {
-                                if (isset($price)) {
+                            if (isset($update_time)) {
+                                if (isset($status)) {
                                     if (isset($category_id)) {
                                         $query = $db->query("UPDATE products SET title = '$title', category_id='$category_id', update_time = '$update_time', image = '$image_name',  WHERE id = '$id'");
                                         if ($query) {
@@ -52,10 +53,10 @@ if ($connect) {
                                     }
 
                                 } else {
-                                    echo '<script>alert("Enter price!")</script>';
+                                    echo '<script>alert("Enter status!")</script>';
                                 }
                             } else {
-                                echo '<script>alert("Enter description!")</script>';
+                                echo '<script>alert("Enter update_time!")</script>';
                             }
                         } else {
                             echo '<script>alert("Please enter title!")</script>';
@@ -70,10 +71,10 @@ if ($connect) {
         }
     } else {
         if (isset($title)) {
-            if (isset($description)) {
-                if (isset($price)) {
+            if (isset($update_time)) {
+                if (isset($status)) {
                     if (isset($category_id)) {
-                        $query = $db->query("Update products SET title='$title', price='$price', description='$description', category_id='$category_id' WHERE id='$id'");
+                        $query = $db->query("UPDATE products SET title = '$title', category_id='$category_id', update_time = '$update_time', image = '$image_name',  WHERE id = '$id'");
                         if ($query) {
 
                             echo '<script>alert("Product updated")</script>';
@@ -86,10 +87,10 @@ if ($connect) {
                     }
 
                 } else {
-                    echo '<script>alert("Enter price!")</script>';
+                    echo '<script>alert("Enter status!")</script>';
                 }
             } else {
-                echo '<script>alert("Enter description!")</script>';
+                echo '<script>alert("Enter update_time!")</script>';
             }
         } else {
             echo '<script>alert("Please enter title!")</script>';
