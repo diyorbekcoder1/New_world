@@ -130,6 +130,7 @@
     
           <!-- Trending Tittle -->
           <div class="about-right mb-90 p-5">
+              <h1 class="text-center"> </h1>
             <div class="m-5">
               <img src="assets/images/news/news-4.jpg" class="img-fluid" alt="">
             </div>

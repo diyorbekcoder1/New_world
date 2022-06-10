@@ -5,7 +5,8 @@ $connect = new DB;
 
 if ($connect) {
     $db = $connect->getConnect();
-    if (isset($_POST['newsedit'])) {
+    if (isset($_POST)) {
+
         $newsedit = $_POST['newsedit'];
         $title1 = $_POST['title'];
         $image = $_FILES['image'];

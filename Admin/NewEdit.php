@@ -5,7 +5,7 @@ $items = [];
 
 if ($connect) {
     $db = $connect->getConnect();
-    if(isset($_GET['id']) ){
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $products = $db->query("select * from products where id = $id");
         if ($products->num_rows > 0) {
@@ -14,23 +14,21 @@ if ($connect) {
             }
         }
     }
-    $categories = $db->query("select id, name from categories");
-          if ($categories->num_rows > 0) {
+
+    $categories = $db->query("select id, name from categories where status = 1");
+
+
+    $arrCategory = [];
+    if ($categories->num_rows > 0) {
         while ($queryAll = $categories->fetch_object()) {
-            $categories[] = $queryAll;
+            $arrCategory[] = $queryAll;
         }
     }
-
+        $n = $n[0];
 }
 
 
-
-
-
-
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -62,43 +60,48 @@ if ($connect) {
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <style>
-        body{
+        body {
 
         }
     </style>
 
 </head>
 
-<body style=" background-color: black" >
+<body style=" background-color: black">
 
 
-<form class=" m-5 " action="./admin/NewEdit.php" method="post" enctype="multipart/form-data">
+<form class=" m-5 " action="/admin/admin/NewEdit.php?id=<?=$n->id ?>" method="post" enctype="multipart/form-data">
     <div class="form-group  ">
-        <input type="text" class="form-control" name="id" value="<?= $n->id ?>">
+        <input type="hidden" class="form-control" name="id" value="<?= $n->id ?>">
 
     </div>
 
-   <div class="form-group  ">
+    <div class="form-group  ">
         <label for="title">Title</label>
-        <input value="<?= $n->title ?? '' ?>" type="text"  class="form-control" id="title" name="title"   placeholder="Enter title">
+        <input value="<?= $n->title ?? '' ?>" type="text" class="form-control" id="title" name="title"
+               placeholder="Enter title">
     </div>
-    <div  class="row ">
+    <div class="row ">
         <div class="form-group col-6">
             <label for="title">CreateDate</label>
-            <input type="text"  class="form-control" id="title" name="create_time" value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="CreateDate">
+            <input type="text" class="form-control" id="title" name="create_time"
+                   value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="CreateDate">
         </div>
         <div class="form-group  col-6">
             <label for="title">UpdateDate</label>
-            <input type="text"  class="form-control" id="title" name="update_time" value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="UpdateDate">
+            <input type="text" class="form-control" id="title" name="update_time"
+                   value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="UpdateDate">
         </div>
     </div>
     <div class="form-group  ">
         <label for="category">Category</label>
         <select class="form-control" id="category" name="category_id">
-            <option selected disabled hidden> select Category </option>
-            <?php if (isset($categories)){
-                foreach ($categories as $category){ ?>
-                    <option value="<?= $category->id ?>" <?= $n->category_id == $category->id ? 'selected' : '' ?>><?= $category->Name ?></option>
+            <option selected disabled hidden> select Category</option>
+            <?php if (isset($arrCategory)) {
+                foreach ($arrCategory as $key=>$category) {
+                 ?>
+
+                    <option value="<?= $category->id ?>" <?= $n->category_id == $category->id ? 'selected' : '' ?>><?= $category->name ?></option>
                 <?php }
             } ?>
         </select>
@@ -120,29 +123,14 @@ if ($connect) {
     </div>
 
 
-    <button type="submit" class="btn btn-primary " name="newsedit">Edit Post</button>
+    <button type="submit" class="btn btn-primary " >Edit Post</button>
 </form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper.js/umd/popper.min.js"> </script>
+<script src="vendor/popper.js/umd/popper.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="js/charts-home.js"></script>

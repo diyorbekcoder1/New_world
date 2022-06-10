@@ -322,9 +322,9 @@ if ($connect) {
                                                     <td style="width: 220px  !important;">
 
 
-                                                        <a href=" ../single.php" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>
-                                                        <a href="./admin/NewEdit.php ?id=<?= $product->id ?>"  style="padding: 5px 10px 5px 10px;" class="btn btn-outline-success">Edit</a>
-                                                        <a href=" ./admin/NewDelete.php?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-danger">Delete</a>
+                                                        <a href="/single.php" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>
+                                                        <a href="/admin/NewEdit.php?id=<?= $product->id ?>"  style="padding: 5px 10px 5px 10px;" class="btn btn-outline-success">Edit</a>
+                                                        <a href="/admin/NewDelete.php?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-danger">Delete</a>
                                                     </td>
                                                 </tr>
                                             <?php }

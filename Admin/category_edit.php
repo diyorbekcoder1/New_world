@@ -9,7 +9,7 @@ if ($connect) {
     if (isset($_GET) && isset($_GET['edit'])) {
         $category_id = $_GET['id'];
 
-        $publicCategory = $db->query(" SELECT * FROM categories where id=$category_id");
+        $publicCategory = $db->query(" SELECT * FROM categories where id = $category_id");
 
 
         if ($publicCategory->num_rows > 0) {
