@@ -1,17 +1,18 @@
 <?php
 require "./connect.php";
-$connect = new DB;
+$connect = new DB();
 if ($connect) {
     $db = $connect -> getConnect();
-
     if (isset($_POST)) {
         $title1 = $_POST['title'];
+        $title2 = $_POST['title2'];
+        $bodytext = $_POST['bodytext'];
+        $newtext = str_replace("'","`",$bodytext);
         $image = $_FILES['image'];
         $category_id = $_POST['category_id'];
         $status = $_POST['status'];
         $create_time = $_POST['create_time'];
         $update_time = $_POST['update_time'];
-
         if (isset($_FILES['image'])) {
             $folder_read = '/assets/images/news/';
             $folder = '../../assets/images/news/';
@@ -54,9 +55,9 @@ if ($connect) {
             echo "Image null!!";
         }
 
-        if ($title1 && $category_id && $create_time && $update_time) {
-            $news = $db->query("INSERT INTO products (title,category_id,update_time,create_time,status,image) values
-             (\"$title1\",\"$category_id\",\"$create_time\",\"$update_time\",$status,\"$path2\") ");
+        if ($title1 && $title2 && $bodytext && $category_id && $create_time && $update_time ) {
+            $news = $db->query("INSERT INTO products (title,title2,bodytext,category_id,update_time,create_time,status,image) values
+             (\"$title1\",\"$title2\",\"$newtext\",\"$category_id\",\"$create_time\",\"$update_time\",$status,\"$path2\") ");
             if ($news) {
                 header("Location: ../tables.php");
             } else {

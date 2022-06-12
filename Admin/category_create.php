@@ -55,10 +55,11 @@
                                 </div>
 
 
+
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">status</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control selectric" name="status">
+                                        <select class="form-control selectric" id="status" name="status">
 
                                             <option value="1">Publish</option>
                                             <option value="0">Not Publish </option>

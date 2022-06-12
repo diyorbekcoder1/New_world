@@ -1,14 +1,13 @@
 <?php
-require "./connect.php";
+include "./connect.php";
 $connect = new DB;
-
-
 if ($connect) {
     $db = $connect->getConnect();
     if (isset($_POST)) {
-
-        $newsedit = $_POST['newsedit'];
         $title1 = $_POST['title'];
+        $title2 = $_POST['title2'];
+        $bodytext = $_POST['bodytext'];
+        $newtext = str_replace("'","`",$bodytext);
         $image = $_FILES['image'];
         $category_id = $_POST['category_id'];
         $id = $_POST['id'];
@@ -39,10 +38,10 @@ if ($connect) {
         } else {
             echo "Image null!!";
         }
-        if ($title1 && $path2 && $update_time &&  $category_id && $status) {
-            $news = $db->query("UPDATE products SET title=\"$title1\",img='$path2' ,category_id='$category_id',update_time='$update_time', status = $status where id =$id");
+        if ($title1 && $title2 && $bodytext && $path2 && $update_time &&  $category_id && $status ){
+            $news = $db->query("UPDATE products SET title=\"$title1\",title2 = $title2,bodytext='$newtext',image='$path2' ,category_id='$category_id',update_time='$update_time', status = $status where id =$id");
             if ($news) {
-                header("Location: ../index.php");
+                header("Location: ../tables.php");
             } else {
                 echo "data not save" . $db->error;
             }

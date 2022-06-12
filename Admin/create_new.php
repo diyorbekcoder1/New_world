@@ -62,6 +62,15 @@ if ($connect) {
         <label for="title">Title</label>
         <input type="text"  class="form-control" id="title" name="title" placeholder="Enter title">
     </div>
+    <div class="form-group  ">
+        <label for="title">Title Second</label>
+        <input type="text" class="form-control" name="title2" placeholder="Title Second">
+    </div>
+    <div class="form-group  ">
+        <label for="title">Content</label>
+        <textarea type="text"  class="form-control"  name="bodytext" placeholder="Content"></textarea>
+    </div>
+
     <div  class="row ">
         <div class="form-group col-6">
             <label for="title">CreateDate</label>

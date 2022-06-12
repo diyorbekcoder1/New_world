@@ -1,30 +1,23 @@
 <?php
-include "./admin/connect.php";
-$connect = new DB() ;
-//
-//$publicCategory =null;
-
+include './admin/connect.php';
+$connect = new DB();
 if ($connect) {
     $db = $connect->getConnect();
-    if (isset($_GET) && isset($_GET['edit'])) {
-        $category_id = $_GET['id'];
-
-        $publicCategory = $db->query(" SELECT * FROM categories where id = $category_id");
-
-
-        if ($publicCategory->num_rows > 0) {
-            while ($queryAll = $publicCategory->fetch_object()) {
-                $categories[] = $queryAll;
+    if (isset($_GET['id'])) {
+        $categories = $_GET['id'];
+        $categories = $db->query("select id,name from categories where status =1");
+        if ($categories->num_rows > 0) {
+            while ($queryAll = $categories->fetch_object()) {
+                $arrCategory[] = $queryAll;
             }
         }
-
     }
-
-
-}else {
-    echo "No Connection";
 }
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -63,35 +56,35 @@ if ($connect) {
     <section class="section">
         <div  class="container mt-5">
             <div class="row">
-                <form style="border: none" class="form-control" method="POST" action="./admin/category_update.php">
+                <form style="border: none" class="form-control" method="POST" action="/Admin/admin/category_update.php">
+
                     <div class="col-12 mt-5 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
                         <div class=" mt-5 card card-Light">
                             <div class="card-header">
                                 <h4>Write Category</h4>
                             </div>
                             <div class="card-body">
+                             <input type="hidden" class="form-control" name="id" value="<?=$arrCategory->id ?? ' ' ?>">
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" id="name" name="name" value="<?=$categories->name?>">
-
+                                        <input type="text" class="form-control" id="name" name="name" value="<?=$arrCategory->name ?? ''?>">
                                     </div>
                                 </div>
-
-
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">status</label>
                                     <div class="col-sm-12 col-md-7">
                                         <select class="form-control selectric"  name="status">
-                                            <option value="true"  value=""  >Publish</option>
-                                            <option value="false" value="" >Not Publish </option>
+                                            <option value="1" >Publish</option>
+                                            <option value="0">Not Publish </option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Update</button>
+                                        <button class="btn btn-primary" type="submit">Create Edit</button>
                                     </div>
                                 </div>
                 </form>

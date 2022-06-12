@@ -1,3 +1,23 @@
+<?php
+include "./Admin/admin/connect.php";
+
+$connect = new DB;
+
+if($connect) {
+    $db = $connect->getConnect();
+
+    $queryNews = $db->query("SELECT * FROM products where status = true");
+
+    $result = [];
+
+    while ($row = $queryNews->fetch_object()) {
+//        print_r($row);
+        $result[] = $row;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -118,24 +138,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="./pages/aboutus.php">About Us</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="single.php">Business</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="pages/sports.html">Sports</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/art.html">Art</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/politics.html">Politics</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/real-estate.html">Real estate</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="pages/travel.html">Travel</a>
-                    </li> -->
+
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
                     </li>
@@ -394,83 +397,28 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-3 col-sm-6 grid-margin mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-             <a href="./pages/aboutus.php">   <img
-                         src="assets/images/dashboard/travel.jpg"
+            <div class="row text-center">
+                <?php foreach($result as $new): ?>
+              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
+                <div class="position-relative image-hover" >
+             <a href="single.php?id=<?=$new->id?>"><img
+                         src="<?=$new->image?>"
                          class="img-fluid"
                          alt="world-news"
                  /></a>
-                  <span class="thumb-title">ABOUT US</span>
+                  <span class="thumb-title"> <?=substr($new->title, 0, 15)?></span>
                 </div>
-              <a href="./pages/aboutus.php" ><h5 class="font-weight-bold mt-3">
-                      Refugees flood Turkey's border with Greece
-                  </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
-                  >Read Article</a
-                >
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-             <a href="./pages/author.php"><img
-                         src="assets/images/dashboard/news.jpg"
-                         class="img-fluid"
-                         alt="world-news"
-                 /></a>
-                  <span class="thumb-title">REAL ESTATE</span>
-                </div>
-            <a href="./pages/author.php"> <h5 class="font-weight-bold mt-3">
-                    South Korea’s Moon Jae-in sworn in vowing address
+            <a href="single.php?id=<?=$new->id?>"> <h5 class="font-weight-bold mt-3">
+                    <?=substr($new->title2, 0, 100)?>
                 </h5></a>
                 <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
+                    <?=substr($new->bodytext, 0, 100)?>
                 </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
+                <a href="single.php?id=<?=$new->id?>" class="font-weight-bold text-dark pt-2  "
                   >Read Article</a
                 >
               </div>
-              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-              <a href="./pages/world.php"> <img
-                          src="assets/images/dashboard/art.jpg"
-                          class="img-fluid"
-                          alt="world-news"
-                  /></a>
-                  <span class="thumb-title">WORLD</span>
-                </div>
-            <a href="./pages/world.php"> <h5 class="font-weight-bold mt-3">
-                    These puppies are training to assist in avalanche rescue
-                </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
-                  >Read Article</a
-                >
-              </div>
-              <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-            <a href="./single.php   "><img
-                        src="assets/images/dashboard/business.jpg"
-                        class="img-fluid"
-                        alt="world-news"
-                /></a>
-                  <span class="thumb-title">BUSINESS</span>
-                </div>
-             <a href="./single.php"> <h5 class="font-weight-bold mt-3">
-                     'Love Is Blind' couple opens up about their first year
-                 </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-                <a href="#" class="font-weight-bold text-dark pt-2"
-                  >Read Article</a
-                >
-              </div>
+                <?php endforeach; ?>
             </div>
           </div>
           <div class="editors-news">
@@ -484,7 +432,7 @@
             <div class="row">
               <div class="col-lg-6  mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
-              <a href=""> <img
+                     <a href=""> <img
                           src="assets/images/dashboard/glob.jpg"
                           class="img-fluid"
                           alt="world-news"
