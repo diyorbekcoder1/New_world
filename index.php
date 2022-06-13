@@ -136,6 +136,7 @@ if($connect) {
                         <i class="mdi mdi-close"></i>
                       </button>
                     </li>
+
                     <li class="nav-item active">
                       <a class="nav-link active" href="./index.php">Home</a>
                     </li>
