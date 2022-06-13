@@ -117,9 +117,9 @@
                     <li class="nav-item">
                       <a class="nav-link" href="aboutus.php">About Us</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/single.php">Business</a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                      <a class="nav-link" href="/single.php">Business</a>-->
+<!--                    </li>-->
                     <!-- <li class="nav-item">
                       <a class="nav-link" href="./sports.html">Sports</a>
                     </li>

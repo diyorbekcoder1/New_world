@@ -7,7 +7,6 @@ if ($connect) {
         $title1 = $_POST['title'];
         $title2 = $_POST['title2'];
         $bodytext = $_POST['bodytext'];
-        $newtext = str_replace("'","`",$bodytext);
         $image = $_FILES['image'];
         $category_id = $_POST['category_id'];
         $status = $_POST['status'];
@@ -57,7 +56,7 @@ if ($connect) {
 
         if ($title1 && $title2 && $bodytext && $category_id && $create_time && $update_time ) {
             $news = $db->query("INSERT INTO products (title,title2,bodytext,category_id,update_time,create_time,status,image) values
-             (\"$title1\",\"$title2\",\"$newtext\",\"$category_id\",\"$create_time\",\"$update_time\",$status,\"$path2\") ");
+             (\"$title1\",\"$title2\",\"$bodytext\",\"$category_id\",\"$create_time\",\"$update_time\",$status,\"$path2\") ");
             if ($news) {
                 header("Location: ../tables.php");
             } else {

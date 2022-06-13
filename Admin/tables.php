@@ -322,7 +322,7 @@ if ($connect) {
                                                     <td style="width: 220px  !important;">
 
 
-                                                        <a href="/single.php" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>
+                                                        <a href="./new1view.php?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-warning">View</a>
                                                         <a href="/admin/NewEdit.php?id=<?= $product->id ?>"  style="padding: 5px 10px 5px 10px;" class="btn btn-outline-success">Edit</a>
                                                         <a href="./admin/NewDelete.php?id=<?= $product->id ?>" style="padding: 5px 10px 5px 10px;" class="btn btn-outline-danger">Delete</a>
                                                     </td>
@@ -356,10 +356,10 @@ if ($connect) {
                                                 <div style=" padding: 8px 10px 8px 10px; border-radius: 30px; ";   class="badge  <?= ($category->status == true) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($category->status == true) ? 'Active' : 'deactive' ?></div>
                                             </td>
                                             <td style="width: 220px ">
-                                                    <form  style="display: inline;" method="POST" action="./category_edit.php">
-                                                    <input hidden type="hidden" name="id" value="<?=$category->id ?>">
-                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" type="submit" >Edit</button>
-                                                </form>
+<!--                                                    <form  style="display: inline;" method="POST" action="./category_edit.php">-->
+<!--                                                    <input hidden type="hidden" name="id" value="--><?//=$category->id ?><!--">-->
+<!--                                                    <button style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" type="submit" >Edit</button>-->
+<!--                                                </form>-->
                                                 <form  style="display: inline;" method="POST"  action="./admin/category_delete.php">
                                                     <input hidden type="hiddin" name="id" value="<?=$category->id?>">
                                                     <button style=" padding: 5px 15px 5px 15px;" class="btn btn-outline-danger" type="submit" name="delete">Delete</button>

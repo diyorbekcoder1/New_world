@@ -7,6 +7,8 @@ if($connect) {
     $db = $connect->getConnect();
 
     $queryNews = $db->query("SELECT * FROM products where status = true");
+//    $queryProducts = $db->query("select  Name from categories");
+
 
     $result = [];
 
@@ -14,6 +16,14 @@ if($connect) {
 //        print_r($row);
         $result[] = $row;
     }
+
+
+//    $products = [] ;
+//    while ($row = $queryProducts->fetch_object()) {
+////        print_r($row);
+////        die();
+//        $products[] = $row;
+//    }
 }
 
 ?>
@@ -397,10 +407,12 @@ if($connect) {
                 </div>
               </div>
             </div>
+
+
             <div class="row text-center">
                 <?php foreach($result as $new): ?>
               <div class="col-lg-3 col-sm-6 mb-5 mb-sm-2">
-                <div class="position-relative image-hover" >
+                <div style="width:auto;height: auto;"   class="position-relative image-hover" >
              <a href="single.php?id=<?=$new->id?>"><img
                          src="<?=$new->image?>"
                          class="img-fluid"
@@ -409,10 +421,10 @@ if($connect) {
                   <span class="thumb-title"> <?=substr($new->title, 0, 15)?></span>
                 </div>
             <a href="single.php?id=<?=$new->id?>"> <h5 class="font-weight-bold mt-3">
-                    <?=substr($new->title2, 0, 100)?>
+                    <?=substr($new->title2, 0, 50)?>
                 </h5></a>
                 <p class="fs-15 font-weight-normal">
-                    <?=substr($new->bodytext, 0, 100)?>
+                    <?=substr($new->bodytext, 0, 50)?>
                 </p>
                 <a href="single.php?id=<?=$new->id?>" class="font-weight-bold text-dark pt-2  "
                   >Read Article</a
@@ -421,6 +433,9 @@ if($connect) {
                 <?php endforeach; ?>
             </div>
           </div>
+
+
+
           <div class="editors-news">
             <div class="row">
               <div class="col-lg-3">

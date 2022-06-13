@@ -75,7 +75,7 @@ if($connect) {
                     </a>
                   </li>
                   <li>
-                    <a href="./Admin/login.php">
+                    <a href="./Admin/index.php">
                         <i class="iconify" data-icon="clarity:users-solid"></i>
                     </a>
                   </li>
