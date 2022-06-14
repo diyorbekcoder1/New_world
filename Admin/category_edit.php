@@ -5,7 +5,7 @@ if ($connect) {
     $db = $connect->getConnect();
     if (isset($_GET['id'])) {
         $categories = $_GET['id'];
-        $categories = $db->query("select id,name from categories where status =1");
+        $categories = $db->query("select id,name from categories where status = 1");
         if ($categories->num_rows > 0) {
             while ($queryAll = $categories->fetch_object()) {
                 $arrCategory[] = $queryAll;

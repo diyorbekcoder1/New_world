@@ -164,6 +164,8 @@ if($connect) {
         <div class="container">
           <div class="banner-top-thumb-wrap">
             <div class="d-lg-flex justify-content-between align-items-center">
+
+
               <div class="d-flex justify-content-between  mb-3 mb-lg-0">
                 <div>
                  <a href=""> <img
@@ -176,6 +178,12 @@ if($connect) {
                      The morning after: What people
                  </h5></a>
               </div>
+
+
+
+
+
+
               <div class="d-flex justify-content-between mb-3 mb-lg-0">
                 <div>
                <a href=""><img

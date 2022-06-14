@@ -70,12 +70,11 @@ if ($connect) {
 <body style=" background-color: black">
 
 
-<form class=" m-5 " action="/admin/admin/NewEdit.php?id=<?=$n->id ?>" method="post" enctype="multipart/form-data">
+<form class=" m-5 " action="/Admin/admin/NewEdit.php?id=<?= $n->id ?>" method="post" enctype="multipart/form-data">
     <div class="form-group  ">
         <input type="hidden" class="form-control" name="id" value="<?= $n->id ?>">
 
     </div>
-
     <div class="form-group  ">
         <label for="title">Title</label>
         <input value="<?= $n->title ?? '' ?>" type="text" class="form-control" id="title" name="title"

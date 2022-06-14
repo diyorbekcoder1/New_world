@@ -1,16 +1,14 @@
 <?php
 require "./connect.php";
-$connect = new DB;
-
-
+$connect = new DB();
 if ($connect) {
     $db = $connect->getConnect();
     if (isset($_POST)) {
-        $Name = $_POST['name'];
+        $name = $_POST['name'];
         $id = $_POST['id'];
         $status = $_POST['status'];
-        if ($Name && $id && $status) {
-            $news = $db->query("UPDATE categories SET name='$Name',status=$status where id = $id ");
+        if ($name && $id && $status) {
+            $news = $db->query("UPDATE categories SET name='$name',status=$status where id = $id ");
             if ($news) {
                 header("Location: ../tables.php");
             } else {
