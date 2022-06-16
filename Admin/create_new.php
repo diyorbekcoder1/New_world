@@ -72,11 +72,11 @@ if ($connect) {
     </div>
 
     <div  class="row ">
-        <div class="form-group col-6">
+        <div class="form-group col-6 d-none">
             <label for="title">CreateDate</label>
             <input type="text"  class="form-control" id="title" name="create_time" value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="CreateDate">
         </div>
-        <div class="form-group  col-6">
+        <div class="form-group  col-6 d-none">
             <label for="title">UpdateDate</label>
             <input type="text"  class="form-control" id="title" name="update_time" value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="UpdateDate">
         </div>

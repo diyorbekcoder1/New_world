@@ -1,3 +1,45 @@
+<?php
+include "../Admin/admin/connect.php";
+
+$connect = new DB;
+
+if($connect) {
+    $db = $connect->getConnect();
+
+    $Business = $db->query("select * from products where category_id=(select id from categories where name like '%Bizness%' ) order by id asc limit 16");
+    $Business_header = $db->query("select * from products where category_id=(select id from categories where name like '%Bizness%' ) order by id desc limit 2");
+
+
+    $Business_headers = [];
+
+    while ($row = $Business_header->fetch_object()) {
+//        print_r($row);
+        $Business_headers[] = $row;
+    }
+
+
+
+
+    $Business_new = [];
+
+    while ($row = $Business->fetch_object()) {
+//        print_r($row);
+        $Business_new[] = $row;
+    }
+
+
+
+
+
+
+}
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -109,32 +151,14 @@
                       <a class="nav-link active" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="world.php">World</a>
+                      <a class="nav-link" href="news.php">News</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="author.php">Real estate</a>
+                      <a class="nav-link" href="Business.php">Business</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="aboutus.php">About Us</a>
+                      <a class="nav-link" href="Jahon_news.php">Jahon news</a>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                      <a class="nav-link" href="/single.php">Business</a>-->
-<!--                    </li>-->
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="./sports.html">Sports</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./art.html">Art</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./politics.html">Politics</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./real-estate.html">Real estate</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./travel.html">Travel</a>
-                    </li> -->
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
                     </li>
@@ -151,7 +175,7 @@
           <div class="col-sm-12">
             <div class="text-center">
               <h1 class="text-center mt-5">
-                Author Page
+                  Business
               </h1>
               <p class="text-secondary fs-15 mb-5">
                 This text can be added in the category Description field in
@@ -171,230 +195,64 @@
                   /></a>
                 <p class="fs-12 m-0">Of the Author</p>
                 <h5 class="mb-2 font-weight-medium">Nout Golstein</h5>
-                <ul class="social-media justify-content-center p-0 mt-3 mb-4">
-                  <li>
-                    <a href="https://www.instagram.com/">
-                      <i class="mdi mdi-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="mdi mdi-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="mdi mdi-youtube"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="mdi mdi-linkedin"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="mdi mdi-twitter"></i>
-                    </a>
-                  </li>
-                </ul>
+
               </div>
-              <p>
-                Odit ut quidem impedit sequi autem ut. Consequatur vel nesciunt
-                ut perspiciatis omnis praesentium eos.
-              </p>
-              <p>
-                Consequatur maiores laboriosam consequatur ea minus corrupti
-                perspiciatis illum. Molestiae perspiciatis ea iste eaque ea
-                sunt. Quae et maiores veritatis cumque facere dolores.
+              <p style="text-align: center">
+                  Odit ut quidem impedit sequi autem ut.
               </p>
             </div>
           </div>
           <div class="col-lg-8  mb-5 mb-sm-2">
             <div class="row">
-              <div class="col-sm-6  mb-5 mb-sm-2">
+
+                <?php foreach($Business_headers as $Business_header): ?>
+              <div class="col-sm-6  mb-5 mb-sm-2 text-center">
                 <div class="position-relative image-hover">
                 <a href=""><img
-                            src="../assets/images/real-estate/Realestate_4.jpg"
+                            src="<?=$Business_header->image?>"
                             class="img-fluid"
                             alt="world-news"
                     /></a>
-                  <span class="thumb-title">REAL ESTATE</span>
+                    <span class="thumb-title"><?=substr($Business_header->title, 0, 15)?></span>
                 </div>
               <a href="" <h5 class="font-weight-600 mt-3">
-                      A look at California's eerie plane graveyards
+                      <?=substr($Business_header->title2, 0, 30)?>
                   </h5>></a>
                 <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
+                    <?=substr($Business_header->bodytext, 0, 60)?>
                 </p>
               </div>
-              <div class="col-sm-6  mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-              <a href=""> <img
-                          src="../assets/images/real-estate/Realestate_2.jpg"
-                          class="img-fluid"
-                          alt="world-news"
-                  /></a>
-                  <span class="thumb-title">REAL ESTATE</span>
-                </div>
-              <a href=""> <h5 class="font-weight-600 mt-3">
-                      The world's most beautiful racecourses
-                  </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-              </div>
+
+                <?php endforeach; ?>
             </div>
-            <div class="row mt-3">
-              <div class="col-sm-6  mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-                <a href=""><img
-                            src="../assets/images/real-estate/Realestate_5.jpg"
-                            class="img-fluid"
-                            alt="world-news"
-                    /></a>
-                  <span class="thumb-title">REAL ESTATE</span>
-                </div>
-             <a href=""> <h5 class="font-weight-600 mt-3">
-                     Japan cancels cherry blossom festivals over virus fears
-                 </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-              </div>
-              <div class="col-sm-6">
-                <div class="position-relative image-hover">
-              <a href=""> <img
-                          src="../assets/images/real-estate/Realestate_3.jpg"
-                          class="img-fluid"
-                          alt="world-news"
-                  /></a>
-                  <span class="thumb-title">TRAVEL</span>
-                </div>
-             <a href=""> <h5 class="font-weight-600 mt-3">
-                     Classic cars reborn as electric vehicles
-                 </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-              </div>
-            </div>
+
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-sm-12">
-            <h5 class="text-muted font-weight-medium mb-3">Popular News</h5>
+            <h5 class="text-muted font-weight-medium mb-3">Popular Business</h5>
           </div>
         </div>
         <div class="row mb-4">
+            <?php foreach($Business_new as $Business): ?>
           <div class="col-sm-3  mb-5 mb-sm-2">
             <div class="position-relative image-hover">
            <a href=""> <img
-                       src="../assets/images/real-estate/Realestate_6.jpg"
+                       src="<?=$Business->image?>"
                        class="img-fluid"
                        alt="world-news"
                /></a>
-              <span class="thumb-title">REAL ESTATE</span>
+              <span class="thumb-title"><?=substr($Business->title, 0, 15)?></span>
             </div>
           <a href=""> <h5 class="font-weight-600 mt-3">
-                  The island country that gave Mayor Pete his name
+                  <?=substr($Business->title2, 0, 50)?>
               </h5></a>
           </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/real-estate/Realestate_10.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  Disney parks expand (good) vegan food options
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/real-estate/Realestate_14.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-        <a href=""><h5 class="font-weight-600 mt-3">
-                A hot springs where clothing is optional after dark
-            </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-            <a href=""><img
-                        src="../assets/images/real-estate/Realestate_16.jpg"
-                        class="img-fluid"
-                        alt="world-news"
-                /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  A hot springs where clothing is optional after dark
-              </h5></a>
-          </div>
+
+
+          <?php endforeach; ?>
         </div>
-        <div class="row mb-4">
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/real-estate/Realestate_8.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  Japanese chef carves food into incredible pieces of art
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-            <a href=""> <img
-                        src="../assets/images/real-estate/Realestate_12.jpg"
-                        class="img-fluid"
-                        alt="world-news"
-                /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  The Misanthrope Society: A Taipei bar for people who
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-         <a href=""> <img
-                     src="../assets/images/real-estate/Realestate_18.jpg"
-                     class="img-fluid"
-                     alt="world-news"
-             /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-         <a href=""><h5 class="font-weight-600 mt-3">
-                 From Pakistan to the Caribbean: Curry's journey
-             </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-          <a href=""> <img
-                      src="../assets/images/real-estate/Realestate_20.jpg"
-                      class="img-fluid"
-                      alt="world-news"
-              /></a>
-              <span class="thumb-title">REAL ESTATE</span>
-            </div>
-          <a href=""> <h5 class="font-weight-600 mt-3">
-                  A hot springs where clothing is optional after dark
-              </h5></a>
-          </div>
-        </div>
-      </div>
+         </div>
     </div>
     <!-- container-scroller ends -->
     <!-- partial:../partials/_footer.html -->

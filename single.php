@@ -99,13 +99,13 @@ if($connect) {
                     <a class="nav-link active" href="./index.php">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/world.php">World</a>
+                    <a class="nav-link" href="pages/news.php">World</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/author.php">Real estate</a>
+                    <a class="nav-link" href="pages/Business.php">Real estate</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/aboutus.php">About Us</a>
+                    <a class="nav-link" href="pages/Jahon_news.php">About Us</a>
                   </li>
 <!--                  <li class="nav-item">-->
 <!--                    <a class="nav-link" href="./index.php">Business</a>-->

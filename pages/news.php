@@ -1,3 +1,45 @@
+<?php
+include "../Admin/admin/connect.php";
+
+$connect = new DB;
+
+if($connect) {
+    $db = $connect->getConnect();
+
+    $yangilik = $db->query("select * from products where category_id=(select id from categories where name like '%Yangiliklar%' ) order by id asc limit 16");
+    $yangilik_header = $db->query("select * from products where category_id=(select id from categories where name like '%Yangiliklar%' ) order by id desc limit 4");
+
+
+    $yangilik2 = [];
+
+    while ($row = $yangilik_header->fetch_object()) {
+//        print_r($row);
+        $yangilik2[] = $row;
+    }
+
+
+
+
+    $yangilik_pro = [];
+
+    while ($row = $yangilik->fetch_object()) {
+//        print_r($row);
+        $yangilik_pro[] = $row;
+    }
+
+
+
+
+
+
+}
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -109,32 +151,15 @@
                       <a class="nav-link active" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="world.php">World</a>
+                      <a class="nav-link" href="news.php">     News</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="author.php">Real estate</a>
+                      <a class="nav-link" href="Business.php">Business</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="aboutus.php">About Us</a>
+                      <a class="nav-link" href="Jahon_news.php">Jahon news</a>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                      <a class="nav-link" href="/single.php">Business</a>-->
-<!--                    </li>-->
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="./sports.html">Sports</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./art.html">Art</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./politics.html">Politics</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./real-estate.html">Real estate</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./travel.html">Travel</a>
-                    </li> -->
+
                     <li class="nav-item">
                       <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
                     </li>
@@ -151,7 +176,7 @@
           <div class="col-sm-12">
             <div class="text-center">
               <h1 class="text-center mt-5">
-                World
+              News
               </h1>
               <p class="text-secondary fs-15">
                 This text can be added in the category Description field in
@@ -181,73 +206,28 @@
           </div>
           <div class="col-lg-6  mb-5 mb-sm-2">
             <div class="row">
+                <?php foreach($yangilik2 as $new_header): ?>
+
               <div class="col-sm-6  mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
-             <a href=""> <img
-                         src="../assets/images/politics/Politics_4.jpg"
+             <a href="./single.php?id=<?=$new_header->id?>"> <img
+                         src="<?=$new_header->image?>"
                          class="img-fluid"
                          alt="world-news"
                  /></a>
-                  <span class="thumb-title">WORLD</span>
+                  <span class="thumb-title"><?=substr($new_header->title, 0, 15)?></span>
                 </div>
-            <a href=""><h5 class="font-weight-600 mt-3">
-                    A look at California's eerie plane graveyards
+            <a href="./single.php?id=<?=$new_header->id?>"><h5 class="font-weight-600 mt-3">
+                    <?=substr($new_header->title2, 0, 50)?>
                 </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
+
               </div>
-              <div class="col-sm-6  mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-              <a href=""> <img
-                          src="../assets/images/politics/Politics_2.jpg"
-                          class="img-fluid"
-                          alt="world-news"
-                  /></a>
-                  <span class="thumb-title">WORLD</span>
-                </div>
-             <a href=""><h5 class="font-weight-600 mt-3">
-                     The world's most beautiful racecourses
-                 </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-              </div>
+
+
+
+                <?php endforeach; ?>
             </div>
-            <div class="row mt-3">
-              <div class="col-sm-6  mb-5 mb-sm-2">
-                <div class="position-relative image-hover">
-               <a href=""><img
-                           src="../assets/images/politics/Politics_5.jpg"
-                           class="img-fluid"
-                           alt="world-news"
-                   /></a>
-                  <span class="thumb-title">WORLD</span>
-                </div>
-            <a href="">  <h5 class="font-weight-600 mt-3">
-                    Japan cancels cherry blossom festivals over virus fears
-                </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-              </div>
-              <div class="col-sm-6">
-                <div class="position-relative image-hover">
-               <a href=""> <img
-                           src="../assets/images/politics/Politics_3.jpg"
-                           class="img-fluid"
-                           alt="world-news"
-                   /></a>
-                  <span class="thumb-title">WORLD</span>
-                </div>
-              <a href=""><h5 class="font-weight-600 mt-3">
-                      Classic cars reborn as electric vehicles
-                  </h5></a>
-                <p class="fs-15 font-weight-normal">
-                  Lorem Ipsum has been the industry's standard dummy text
-                </p>
-              </div>
-            </div>
+
           </div>
         </div>
         <div class="row mt-5">
@@ -256,220 +236,29 @@
           </div>
         </div>
         <div class="row mb-4">
+
+            <?php foreach($yangilik_pro as $new): ?>
+
           <div class="col-sm-3  mb-5 mb-sm-2">
             <div class="position-relative image-hover">
-          <a href="">  <img
-                      src="../assets/images/politics/Politics_6.jpg"
+          <a href="./single.php?id=<?=$new_header->id?>">  <img
+                      src="<?= $new->image ?>"
                       class="img-fluid"
                       alt="world-news"
               /></a>
-              <span class="thumb-title">WORLD</span>
+              <span class="thumb-title">  <?=substr($new->title2, 0, 15)?></span>
             </div>
-         <a href=""> <h5 class="font-weight-600 mt-3">
-                 The island country that gave Mayor Pete his name
+         <a href="./single.php?id=<?=$new_header->id?>"> <h5 class="font-weight-600 mt-3">
+                 <?=substr($new->title2, 0, 50)?>
              </h5></a>
           </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/politics/Politics_10.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""> <h5 class="font-weight-600 mt-3">
-                  Disney parks expand (good) vegan food options
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-          <a href=""> <img
-                      src="../assets/images/politics/Politics_14.jpg"
-                      class="img-fluid"
-                      alt="world-news"
-              /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-         <a href=""> <h5 class="font-weight-600 mt-3">
-                 A hot springs where clothing is optional after dark
-             </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-            <a href=""> <img
-                        src="../assets/images/politics/Politics_16.jpg"
-                        class="img-fluid"
-                        alt="world-news"
-                /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""> <h5 class="font-weight-600 mt-3">
-                  A hot springs where clothing is optional after dark
-              </h5></a>
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/politics/Politics_8.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""> <h5 class="font-weight-600 mt-3">
-                  Japanese chef carves food into incredible pieces of art
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""><img
-                       src="../assets/images/politics/Politics_12.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  The Misanthrope Society: A Taipei bar for people who
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/politics/Politics_18.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-        <a href=""><h5 class="font-weight-600 mt-3">
-                From Pakistan to the Caribbean: Curry's journey
-            </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-         <a href=""> <img
-                     src="../assets/images/politics/Politics_20.jpg"
-                     class="img-fluid"
-                     alt="world-news"
-             /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-         <a href=""> <h5 class="font-weight-600 mt-3">
-                 A hot springs where clothing is optional after dark
-             </h5></a>
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""> <img
-                       src="../assets/images/politics/Politics_7.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-        <a href="">  <h5 class="font-weight-600 mt-3">
-                The island country that gave Mayor Pete his name
-            </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-          <a href="">  <img
-                      src="../assets/images/politics/Politics_11.jpg"
-                      class="img-fluid"
-                      alt="world-news"
-              /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-        <a href=""><h5 class="font-weight-600 mt-3">
-                Disney parks expand (good) vegan food options
-            </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-            <a href=""><img
-                        src="../assets/images/politics/Politics_15.jpg"
-                        class="img-fluid"
-                        alt="world-news"
-                /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  A hot springs where clothing is optional after dark
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-           <a href=""><img
-                       src="../assets/images/politics/Politics_17.jpg"
-                       class="img-fluid"
-                       alt="world-news"
-               /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  A hot springs where clothing is optional after dark
-              </h5></a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-             <a href=""><img
-                         src="../assets/images/politics/Politics_9.jpg"
-                         class="img-fluid"
-                         alt="world-news"
-                 /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""> <h5 class="font-weight-600 mt-3">
-                  Japanese chef carves food into incredible pieces of art
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-      <a href=""> <img
-                  src="../assets/images/politics/Politics_13.jpg"
-                  class="img-fluid"
-                  alt="world-news"
-          /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-          <a href=""><h5 class="font-weight-600 mt-3">
-                  The Misanthrope Society: A Taipei bar for people who
-              </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-          <a href=""><img
-                      src="../assets/images/politics/Politics_19.jpg"
-                      class="img-fluid"
-                      alt="world-news"
-              /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-         <a href=""> <h5 class="font-weight-600 mt-3">
-                 From Pakistan to the Caribbean: Curry's journey
-             </h5></a>
-          </div>
-          <div class="col-sm-3  mb-5 mb-sm-2">
-            <div class="position-relative image-hover">
-            <a href=""> <img
-                        src="../assets/images/politics/Politics_21.jpg"
-                        class="img-fluid"
-                        alt="world-news"
-                /></a>
-              <span class="thumb-title">WORLD</span>
-            </div>
-           <a href=""><h5 class="font-weight-600 mt-3">
-                   From Pakistan to the Caribbean: Curry's journey
-               </h5></a>
-          </div>
+
+
+
+
+
+
+            <?php endforeach; ?>
         </div>
       </div>
     </div>

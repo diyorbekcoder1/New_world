@@ -70,7 +70,7 @@ if ($connect) {
 <body style=" background-color: black">
 
 
-<form class=" m-5 " action="/Admin/admin/NewEdit.php?id=<?= $n->id ?>" method="post" enctype="multipart/form-data">
+<form class=" m-5 " action="admin/NewEdit.php?id=<?= $n->id ?>" method="POST" enctype="multipart/form-data">
     <div class="form-group  ">
         <input type="hidden" class="form-control" name="id" value="<?= $n->id ?>">
 
@@ -89,14 +89,14 @@ if ($connect) {
         <textarea type="text"  class="form-control"  name="bodytext" placeholder="Content"><?= $n->bodytext ?? '' ?></textarea>
     </div>
     <div class="row ">
-        <div class="form-group col-6">
+        <div class="form-group col-6 d-none">
             <label for="title">CreateDate</label>
-            <input type="text" class="form-control" id="title" name="create_time"
+            <input type="hidden" class="form-control" id="title" name="create_time"
                    value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="CreateDate">
         </div>
-        <div class="form-group  col-6">
+        <div class="form-group  col-6 d-none">
             <label for="title">UpdateDate</label>
-            <input type="text" class="form-control" id="title" name="update_time"
+            <input type="hidden" class="form-control" id="title" name="update_time"
                    value="<?php echo date("Y-m-d h:i:s"); ?>" placeholder="UpdateDate">
         </div>
     </div>
@@ -108,7 +108,7 @@ if ($connect) {
                 foreach ($arrCategory as $key=>$category) {
                  ?>
 
-                    <option value="<?= $category->id ?>" <?= $n->category_id == $category->id ? 'selected' : '' ?>><?= $category->name ?></option>
+                    <option value="<?= $category->id ?>"<?= $n->category_id == $category->id ? 'selected' : '' ?>><?= $category->name ?></option>
                 <?php }
             } ?>
         </select>

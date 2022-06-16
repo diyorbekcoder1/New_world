@@ -3,14 +3,21 @@ include './admin/connect.php';
 $connect = new DB();
 if ($connect) {
     $db = $connect->getConnect();
-    if (isset($_GET['id'])) {
-        $categories = $_GET['id'];
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
+        $oldCategory = $db->query("select * from categories where id =$id");
+        if ($oldCategory->num_rows > 0) {
+            while ($queryAll = $oldCategory->fetch_object()) {
+                $old[] = $queryAll;
+            }
+        }
         $categories = $db->query("select id,name from categories where status = 1");
         if ($categories->num_rows > 0) {
             while ($queryAll = $categories->fetch_object()) {
                 $arrCategory[] = $queryAll;
             }
         }
+        $oldCategory =$old[0];
     }
 }
 
@@ -64,11 +71,11 @@ if ($connect) {
                                 <h4>Write Category</h4>
                             </div>
                             <div class="card-body">
-                             <input type="hidden" class="form-control" name="id" value="<?=$arrCategory->id ?? ' ' ?>">
+                             <input type="hidden" class="form-control" name="id" value="<?=$oldCategory->id ?? ' ' ?>">
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" id="name" name="name" value="<?=$arrCategory->name ?? ''?>">
+                                        <input type="text" class="form-control" id="name" name="name" value="<?=$oldCategory->Name ?? ''?>">
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">

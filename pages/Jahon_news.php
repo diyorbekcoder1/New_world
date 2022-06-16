@@ -1,3 +1,42 @@
+
+
+<?php
+include "../Admin/admin/connect.php";
+
+$connect = new DB;
+
+if($connect) {
+    $db = $connect->getConnect();
+
+    $Jahon_new = $db->query("select * from products where category_id=(select id from categories where name like '%Jahon%' ) order by id asc limit 16");
+    $Jahon_new_header = $db->query("select * from products where category_id=(select id from categories where name like '%Jahon%' ) order by id desc limit 2");
+
+
+    $Jahon_new_headers = [];
+
+    while ($row = $Jahon_new_header->fetch_object()) {
+//        print_r($row);
+        $Jahon_new_headers[] = $row;
+    }
+
+
+
+
+    $Jahon_new2 = [];
+
+    while ($row = $Jahon_new->fetch_object()) {
+//        print_r($row);
+        $Jahon_new2[] = $row;
+    }
+
+
+
+
+
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -90,32 +129,15 @@
                 <a class="nav-link active" href="../index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="world.php">World</a>
+                <a class="nav-link" href="news.php">News</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="author.php">Real estate</a>
+                <a class="nav-link" href="Business.php">Business</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="aboutus.php">About Us</a>
+                <a class="nav-link" href="Jahon_news.php">Jahon news</a>
               </li>
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link" href="/single.php">Business</a>-->
-<!--              </li>-->
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="./sports.html">Sports</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./art.html">Art</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./politics.html">Politics</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./real-estate.html">Real estate</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./travel.html">Travel</a>
-              </li> -->
+
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
               </li>
@@ -128,94 +150,100 @@
 
   </header>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="text-center">
-          <h1 class="text-center mt-5">
-            About Us
-          </h1>
-          <p class="text-secondary fs-15 mb-5 pb-3">
-            This text can be added in the category Description field in
-            dashboard
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="contact-wrap">
       <div class="row">
-        <div class="col-lg-12  mb-5 mb-sm-4">
-          <div class="position-relative image-hover">
-          <a href=""><img src="../assets/images/contact.jpg" class="img-fluid" alt="world-news" /></a>
+          <div class="col-sm-12">
+              <div class="text-center">
+                  <h1 class="text-center mt-5">
+                      Jahon news
+                  </h1>
+                  <p class="text-secondary fs-15 mb-5">
+                      This text can be added in the category Description field in
+                      dashboard
+                  </p>
+              </div>
           </div>
-        </div>
-        
       </div>
       <div class="row">
-        <div class="col-lg-12  mb-2 mb-lg-2">
-          <p class="fs-15 font-weight-normal mb-4 mt-5">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur.
-          </p>
-        
-        </div>
-       
+          <div class="col-lg-4  mb-5 mb-sm-2">
+              <div class="author-box border p-5">
+                  <div class="text-center">
+                      <a href=""><img
+                                  src="../assets/images/dashboard/Profile_4.jpg"
+                                  alt="news"
+                                  class="img-lg img-fluid img-rounded mb-3"
+                          /></a>
+                      <p class="fs-12 m-0">Of the Author</p>
+                      <h5 class="mb-2 font-weight-medium">Nout Golstein</h5>
+
+                  </div>
+                  <p style="text-align: center">
+                      Quae et maiores veritatis cumque facere dolores.
+                  </p>
+
+              </div>
+          </div>
+          <div class="col-lg-8  mb-5 mb-sm-2">
+              <div class="row">
+
+                  <?php foreach($Jahon_new_headers as $Jahon_new_header): ?>
+                      <div class="col-sm-6  mb-5 mb-sm-2 text-center">
+                          <div class="position-relative image-hover">
+                              <a href=""><img
+                                          src="<?=$Jahon_new_header->image?>"
+                                          class="img-fluid"
+                                          alt="world-news"
+                                  /></a>
+                              <span class="thumb-title"><?=substr($Jahon_new_header->title, 0, 15)?></span>
+                          </div>
+                          <a href="" <h5 class="font-weight-600 mt-3">
+                              <?=substr($Jahon_new_header->title2, 0, 30)?>
+                          </h5>></a>
+                          <p class="fs-15 font-weight-normal">
+                              <?=substr($Jahon_new_header->bodytext, 0, 60)?>
+                          </p>
+                      </div>
+
+                  <?php endforeach; ?>
+              </div>
+
+          </div>
       </div>
-    </div>
+      <div class="row mt-5">
+          <div class="col-sm-12">
+              <h5 class="text-muted font-weight-medium mb-3">Popular News</h5>
+          </div>
+      </div>
+      <div class="row mb-4">
+          <?php foreach($Jahon_new2 as $Jahon_new): ?>
+              <div class="col-sm-3  mb-5 mb-sm-2">
+                  <div class="position-relative image-hover">
+                      <a href=""> <img
+                                  src="<?=$Jahon_new->image?>"
+                                  class="img-fluid"
+                                  alt="world-news"
+                          /></a>
+                      <span class="thumb-title"><?=substr($Jahon_new->title, 0, 15)?></span>
+                  </div>
+                  <a href=""> <h5 class="font-weight-600 mt-3">
+                          <?=substr($Jahon_new->title2, 0, 50)?>
+                      </h5></a>
+              </div>
+
+
+          <?php endforeach; ?>
+      </div>
   </div>
 
-  <!-- container-scroller ends -->
-  <!-- partial:../partials/_footer.html -->
+  </div>
+  </div>
+
+
   <footer>
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
           <div class="border-top"></div>
         </div>
-<!--        <div class="col-sm-3 col-lg-3">-->
-<!--          <ul class="footer-vertical-nav">-->
-<!--            <li class="menu-title"><a href="./news-post.html">News</a></li>-->
-<!--            <li><a href="../index.php">Home</a></li>-->
-<!--            <li><a href="world.php">World</a></li>-->
-<!--            <li><a href="author.php">Magazine</a></li>-->
-<!--            <li><a href="./business.html">Business</a></li>-->
-<!--            <li><a href="./politics.html">Politics</a></li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <div class="col-sm-3 col-lg-3">-->
-<!--          <ul class="footer-vertical-nav">-->
-<!--            <li class="menu-title"><a href="world.php">World</a></li>-->
-<!--            <li><a href="./sports.html">Sports</a></li>-->
-<!--            <li><a href="./art.html">Art</a></li>-->
-<!--            <li><a href="#">Magazine</a></li>-->
-<!--            <li><a href="./real-estate.html">Real estate</a></li>-->
-<!--            <li><a href="./travel.html">Travel</a></li>-->
-<!--            <li><a href="author.php">Author</a></li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <div class="col-sm-3 col-lg-3">-->
-<!--          <ul class="footer-vertical-nav">-->
-<!--            <li class="menu-title"><a href="#">Features</a></li>-->
-<!--            <li><a href="#">Photography</a></li>-->
-<!--            <li><a href="#">Video</a></li>-->
-<!--            <li><a href="./news-post.html">Newsletters</a></li>-->
-<!--            <li><a href="#">Live Events</a></li>-->
-<!--            <li><a href="#">Stores</a></li>-->
-<!--            <li><a href="#">Jobs</a></li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <div class="col-sm-3 col-lg-3">-->
-<!--          <ul class="footer-vertical-nav">-->
-<!--            <li class="menu-title"><a href="#">More</a></li>-->
-<!--            <li><a href="#">RSS</a></li>-->
-<!--            <li><a href="#">FAQ</a></li>-->
-<!--            <li><a href="#">User Agreement</a></li>-->
-<!--            <li><a href="#">Privacy</a></li>-->
-<!--            <li><a href="aboutus.php">About us</a></li>-->
-<!--            <li><a href="./contactus.html">Contact</a></li>-->
-<!--          </ul>-->
-<!--        </div>-->
       </div>
       <div class="row">
         <div class="col-sm-12">

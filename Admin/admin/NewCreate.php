@@ -9,7 +9,7 @@ if ($connect) {
         $bodytext = $_POST['bodytext'];
         $image = $_FILES['image'];
         $category_id = $_POST['category_id'];
-        $status = $_POST['status'];
+        $status = $_POST['status'] === "true";
         $create_time = $_POST['create_time'];
         $update_time = $_POST['update_time'];
         if (isset($_FILES['image'])) {

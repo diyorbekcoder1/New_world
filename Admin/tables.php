@@ -356,7 +356,7 @@ if ($connect) {
                                                 <div style=" padding: 8px 10px 8px 10px; border-radius: 30px; ";   class="badge  <?= ($category->status == true) ? 'badge-success' : 'badge-danger' ?> badge-shadow"><?= ($category->status == true) ? 'Active' : 'deactive' ?></div>
                                             </td>
                                             <td style="width: 220px ">
-                                                    <form  style="display: inline;" method="POST" action="./category_edit.php">
+                                                    <form  style="display: inline;" method="POST" action="/Admin/category_edit.php">
                                                     <input hidden type="hidden" name="id" value="<?=$category->id ?>">
                                                     <button style=" padding: 5px 15px 5px 15px; " class="btn btn-outline-success" type="submit" >Edit</button>
                                                 </form>
