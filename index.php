@@ -6,12 +6,8 @@ $connect = new DB;
 if($connect) {
     $db = $connect->getConnect();
     $queryNews = $db->query("SELECT * FROM products where status = true");
-    $Last_News = $db->query("select title,title2,image from products order by id asc limit 6");
+    $Last_News = $db->query("select * from products where category_id=(select id from categories where name like '%Yangiliklar%' ) order by id desc limit 6");
     $Last_New = $db->query("select title2,image from products order by id desc limit 4");
-
-
-
-
 
 
     $headers = [];
@@ -83,11 +79,7 @@ if($connect) {
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar navbar-expand-lg navbar-light">
               <div class="d-flex justify-content-between align-items-center navbar-top">
-                <!-- <ul class="navbar-left">
-                  <li>Wed, March 4, 2020</li>
-                  <li>30°C,London</li>
-                </ul> -->
-                <div>
+                     <div>
                   <a class="navbar-brand" href="./index.php"
                     ><img src="assets/images/logo.svg" alt=""
                   /></a>
@@ -402,14 +394,14 @@ if($connect) {
                   class="d-lg-flex justify-content-between align-items-center border-top mt-5 footer-bottom"
                 >
                   <ul class="footer-horizontal-menu">
-                    <li><a href="#">Jora.uz</a></li>
-                    <li><a href="#">AzNews</a></li>
-                    <li><a href="#">MollaShop</a></li>
-                    <li><a href="#">WorldVision</a></li>
+
+                    <li><a href="#">Man shop</a></li>
+                    <li><a href="#">Golden house</a></li>
+                    <li><a href="#">World Vision</a></li>
            
                   </ul>
                   <p class="font-weight-medium">
-                    © 2022 <a href="https://www.bootstrapdash.com/" target="_blank" class="text-dark">Yusupov</a>, Inc. All Rights Reserved.
+                    © 2022 <a href="https://www.bootstrapdash.com/" target="_blank" class="text-dark">Fazliddinov</a>, Inc. All Rights Reserved.
                   </p>
                 </div>
               </div>

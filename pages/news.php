@@ -8,7 +8,16 @@ if($connect) {
 
     $yangilik = $db->query("select * from products where category_id=(select id from categories where name like '%Yangiliklar%' ) order by id asc limit 16");
     $yangilik_header = $db->query("select * from products where category_id=(select id from categories where name like '%Yangiliklar%' ) order by id desc limit 4");
+    $body = $db->query("select * from products where category_id=(select id from categories where name like '%Yangiliklar%' ) order by id asc limit 1");
 
+
+    $bodys =[];
+
+    if ($body->num_rows > 0) {
+        while ($rows = $body->fetch_object()) {
+            $bodys[] = $rows;
+        }
+    }
 
     $yangilik2 = [];
 
@@ -116,7 +125,7 @@ if($connect) {
                       </a>
                     </li>
                     <li>
-                      <a href="../Admin/login.php">
+                      <a href="../Admin/">
                           <i class="iconify" data-icon="clarity:users-solid"></i>
                       </a>
                     </li>
@@ -175,7 +184,7 @@ if($connect) {
         <div class="row">
           <div class="col-sm-12">
             <div class="text-center">
-              <h1 class="text-center mt-5">
+              <h1 style="font-weight: bold;" class="text-center mt-5">
               News
               </h1>
               <p class="text-secondary fs-15">
@@ -183,27 +192,33 @@ if($connect) {
                 dashboard
               </p>
             </div>
-            <h5 class="text-muted font-weight-medium mb-3">World News</h5>
+            <h5 class="text-muted font-weight-medium mb-3"> News</h5>
           </div>
         </div>
         <div class="row">
+
+            <?php foreach($bodys as $bodys_header): ?>
+
           <div class="col-lg-6  mb-5 mb-sm-2">
             <div class="position-relative image-hover">
              <a href=""><img
-                         src="../assets/images/politics/Politics_1.jpg"
+                         src="<?=$bodys_header->image?>"
                          class="img-fluid"
                          alt="world-news"
                  /></a>
-              <span class="thumb-title">WORLD</span>
+                <span class="thumb-title"><?=substr($bodys_header->title, 0, 15)?></span>
             </div>
           <a href=""> <h1 class="font-weight-600 mt-3">
-                  Melania Trump speaks about courage at State Department
+                  <?=substr($bodys_header->title2, 0, 30)?>
               </h1></a>
             <p class="fs-15 font-weight-normal">
-              Lorem Ipsum has been the industry's standard dummy text ever since
-              the 1500s, when an unknown printer took a galley of type and
+                <?=substr($bodys_header->bodytext, 0, 150)?>
             </p>
           </div>
+
+
+
+            <?php endforeach; ?>
           <div class="col-lg-6  mb-5 mb-sm-2">
             <div class="row">
                 <?php foreach($yangilik2 as $new_header): ?>

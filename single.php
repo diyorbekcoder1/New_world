@@ -75,7 +75,7 @@ if($connect) {
                     </a>
                   </li>
                   <li>
-                    <a href="./Admin/index.php">
+                    <a href="./Admin/">
                         <i class="iconify" data-icon="clarity:users-solid"></i>
                     </a>
                   </li>
@@ -99,13 +99,13 @@ if($connect) {
                     <a class="nav-link active" href="./index.php">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/news.php">World</a>
+                    <a class="nav-link" href="pages/news.php">News</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/Business.php">Real estate</a>
+                    <a class="nav-link" href="pages/Business.php">Business</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/Jahon_news.php">About Us</a>
+                    <a class="nav-link" href="pages/Jahon_news.php">Jahon news</a>
                   </li>
 <!--                  <li class="nav-item">-->
 <!--                    <a class="nav-link" href="./index.php">Business</a>-->
@@ -191,14 +191,14 @@ if($connect) {
             <div class="col-sm-12">
               <div class="d-lg-flex justify-content-between align-items-center border-top mt-5 footer-bottom">
                 <ul class="footer-horizontal-menu">
-                  <li><a href="#">Jora.uz</a></li>
-                  <li><a href="#">AzNews</a></li>
-                  <li><a href="#">MollaShop</a></li>
-                  <li><a href="#">WorldVision</a></li>
+
+                  <li><a href="#">Man shop</a></li>
+                  <li><a href="#">Golden hause</a></li>
+                  <li><a href="#">World Vision</a></li>
 
                 </ul>
                 <p class="font-weight-medium">
-                  © 2022 <a href="https://www.bootstrapdash.com/" target="_blank" class="text-dark">Yusupov</a>, Inc.
+                  © 2022 <a href="https://www.bootstrapdash.com/" target="_blank" class="text-dark">Fazliddinov</a>, Inc.
                   All Rights Reserved.
                 </p>
               </div>

@@ -7,6 +7,7 @@ if ($connect) {
         $title1 = $_POST['title'];
         $title2 = $_POST['title2'];
         $bodytext = $_POST['bodytext'];
+//        $top = $_POST['top'] === "true";
         $image = $_FILES['image'];
         $category_id = $_POST['category_id'];
         $status = $_POST['status'] === "true";

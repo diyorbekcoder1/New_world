@@ -105,7 +105,7 @@ if($connect) {
                 </a>
               </li>
               <li>
-                <a href="../Admin/login.php">
+                <a href="../Admin/">
                     <i class="iconify" data-icon="clarity:users-solid"></i>
                 </a>
               </li>
@@ -153,7 +153,7 @@ if($connect) {
       <div class="row">
           <div class="col-sm-12">
               <div class="text-center">
-                  <h1 class="text-center mt-5">
+                  <h1 style="font-weight: bold;" class="text-center mt-5">
                       Jahon news
                   </h1>
                   <p class="text-secondary fs-15 mb-5">
@@ -168,16 +168,16 @@ if($connect) {
               <div class="author-box border p-5">
                   <div class="text-center">
                       <a href=""><img
-                                  src="../assets/images/dashboard/Profile_4.jpg"
+                                  src="../assets/images/dashboard/bil34343.jfif"
                                   alt="news"
                                   class="img-lg img-fluid img-rounded mb-3"
                           /></a>
-                      <p class="fs-12 m-0">Of the Author</p>
-                      <h5 class="mb-2 font-weight-medium">Nout Golstein</h5>
+                      <p class="fs-12 m-0"> Author</p>
+                      <h5 class="mb-2 font-weight-medium">Bill Gates</h5>
 
                   </div>
                   <p style="text-align: center">
-                      Quae et maiores veritatis cumque facere dolores.
+                      Life is hectic - you have to get used to the truth.
                   </p>
 
               </div>
