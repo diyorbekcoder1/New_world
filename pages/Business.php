@@ -209,14 +209,14 @@ if($connect) {
                 <?php foreach($Business_headers as $Business_header): ?>
               <div class="col-sm-6  mb-5 mb-sm-2 text-center">
                 <div class="position-relative image-hover">
-                <a href=""><img
+                <a href="../single.php?id=<?= $Business_header->id ?>"><img
                             src="<?=$Business_header->image?>"
                             class="img-fluid"
                             alt="world-news"
                     /></a>
                     <span class="thumb-title"><?=substr($Business_header->title, 0, 15)?></span>
                 </div>
-              <a href="" <h5 class="font-weight-600 mt-3">
+              <a href="../single.php?id=<?= $Business_header->id ?>" <h5 class="font-weight-600 mt-3">
                       <?=substr($Business_header->title2, 0, 30)?>
                   </h5>></a>
                 <p class="fs-15 font-weight-normal">

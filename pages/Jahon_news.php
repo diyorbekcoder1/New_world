@@ -188,14 +188,14 @@ if($connect) {
                   <?php foreach($Jahon_new_headers as $Jahon_new_header): ?>
                       <div class="col-sm-6  mb-5 mb-sm-2 text-center">
                           <div class="position-relative image-hover">
-                              <a href=""><img
+                              <a href="../single.php?id=<?= $Jahon_new_header->id ?>"><img
                                           src="<?=$Jahon_new_header->image?>"
                                           class="img-fluid"
                                           alt="world-news"
                                   /></a>
                               <span class="thumb-title"><?=substr($Jahon_new_header->title, 0, 15)?></span>
                           </div>
-                          <a href="" <h5 class="font-weight-600 mt-3">
+                          <a href="../single.php?id=<?= $Jahon_new_header->id ?>" <h5 class="font-weight-600 mt-3">
                               <?=substr($Jahon_new_header->title2, 0, 30)?>
                           </h5>></a>
                           <p class="fs-15 font-weight-normal">
@@ -217,14 +217,14 @@ if($connect) {
           <?php foreach($Jahon_new2 as $Jahon_new): ?>
               <div class="col-sm-3  mb-5 mb-sm-2">
                   <div class="position-relative image-hover">
-                      <a href=""> <img
+                      <a href="../single.php?id=<?= $Jahon_new->id ?>"> <img
                                   src="<?=$Jahon_new->image?>"
                                   class="img-fluid"
                                   alt="world-news"
                           /></a>
                       <span class="thumb-title"><?=substr($Jahon_new->title, 0, 15)?></span>
                   </div>
-                  <a href=""> <h5 class="font-weight-600 mt-3">
+                  <a href="../single.php?id=<?= $Jahon_new->id ?>"> <h5 class="font-weight-600 mt-3">
                           <?=substr($Jahon_new->title2, 0, 50)?>
                       </h5></a>
               </div>

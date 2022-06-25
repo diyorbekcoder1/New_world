@@ -201,14 +201,14 @@ if($connect) {
 
           <div class="col-lg-6  mb-5 mb-sm-2">
             <div class="position-relative image-hover">
-             <a href=""><img
+             <a href="../single.php?id=<?= $bodys_header->id ?>"><img
                          src="<?=$bodys_header->image?>"
                          class="img-fluid"
                          alt="world-news"
                  /></a>
                 <span class="thumb-title"><?=substr($bodys_header->title, 0, 15)?></span>
             </div>
-          <a href=""> <h1 class="font-weight-600 mt-3">
+          <a href="../single.php?id=<?= $bodys_header->id ?>"> <h1 class="font-weight-600 mt-3">
                   <?=substr($bodys_header->title2, 0, 30)?>
               </h1></a>
             <p class="fs-15 font-weight-normal">
@@ -225,14 +225,14 @@ if($connect) {
 
               <div class="col-sm-6  mb-5 mb-sm-2">
                 <div class="position-relative image-hover">
-             <a href="./single.php?id=<?=$new_header->id?>"> <img
+             <a href="../single.php?id=<?= $new_header->id ?>"> <img
                          src="<?=$new_header->image?>"
                          class="img-fluid"
                          alt="world-news"
                  /></a>
                   <span class="thumb-title"><?=substr($new_header->title, 0, 15)?></span>
                 </div>
-            <a href="./single.php?id=<?=$new_header->id?>"><h5 class="font-weight-600 mt-3">
+            <a href="../single.php?id=<?= $new_header->id ?>"><h5 class="font-weight-600 mt-3">
                     <?=substr($new_header->title2, 0, 50)?>
                 </h5></a>
 
@@ -256,14 +256,14 @@ if($connect) {
 
           <div class="col-sm-3  mb-5 mb-sm-2">
             <div class="position-relative image-hover">
-          <a href="./single.php?id=<?=$new_header->id?>">  <img
+          <a href="../single.php?id=<?= $new->id ?>">  <img
                       src="<?= $new->image ?>"
                       class="img-fluid"
                       alt="world-news"
               /></a>
               <span class="thumb-title">  <?=substr($new->title2, 0, 15)?></span>
             </div>
-         <a href="./single.php?id=<?=$new_header->id?>"> <h5 class="font-weight-600 mt-3">
+         <a href="../single.php?id=<?= $new->id ?>"> <h5 class="font-weight-600 mt-3">
                  <?=substr($new->title2, 0, 50)?>
              </h5></a>
           </div>
