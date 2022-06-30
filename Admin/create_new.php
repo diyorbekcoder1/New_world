@@ -47,9 +47,7 @@ if ($connect) {
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <style>
-        body{
-
-        }
+        
     </style>
 
 </head>
@@ -92,11 +90,7 @@ if ($connect) {
             } ?>
         </select>
     </div>
-    <div class="form-group ">
-        <label for="Image">Image</label> <br>
-        <input type="file" class="form-control-file" id="image" name="image">
-    </div>
-    <div class="form-group">
+ <div class="form-group">
         <label for="status">Status</label>
         <div class="">
             <select class="form-control selectric" name="status">
@@ -105,6 +99,12 @@ if ($connect) {
             </select>
         </div>
     </div>
+
+    <div class="form-group ">
+        <label for="Image">Image</label> <br>
+        <input type="file" class="form-control-file" id="image" name="image">
+    </div>
+   
 
 
     <button type="submit" class="btn btn-primary ">Create Post</button>

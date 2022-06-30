@@ -14,6 +14,8 @@ if ($connect) {
     if (isset($_POST)) {
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+
         $query = $db->query("SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1");
         if ($query->num_rows > 0) {
             while ($queryAll = $query->fetch_object()) {

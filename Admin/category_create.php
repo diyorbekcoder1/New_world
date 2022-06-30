@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['is_login'])) {
+    header('Location: /Admin/login.php');
+}
 
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: /admin/");
+if (!isset($_SESSION['is_login'])) {
+    header('Location: /Admin/login.php');
 }
 include "./admin/connect.php";
 

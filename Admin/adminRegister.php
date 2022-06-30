@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-    header('Location: ./login.php');
+if (!isset($_SESSION['is_login'])) {
+    header('Location: /Admin/login.php');
 }
 
 ?>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['user'])) {
                                       <label for="register-password" class="label-material">Password     </label>
                                   </div>
                                   <div class="form-group terms-conditions text-center">
-                                      <input id="register-agree" name="is_admin" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
+                                      <input id="register-agree" name="is_admin" type="checkbox"  data-msg="Your agreement is required" class="checkbox-template">
                                       <label for="register-agree">I agree with the terms and policy</label>
                                   </div>
                                   <div class="form-group text-center">

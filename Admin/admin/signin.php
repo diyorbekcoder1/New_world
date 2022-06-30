@@ -10,41 +10,62 @@ if ($connect){
         $username = $_POST['username'];
         $password = $_POST['password'];
         $is_admin = 1;
-        if (isset($firstname)){
-            if (isset($lastname)){
-                if (isset($username)){
-                    if (isset($password)){
-                        $query = $db->query("INSERT INTO users (firstname, lastname, username, password, is_admin) VALUES ('$firstname', '$lastname', '$username', '$password', '$is_admin')");
-                        if ($query){
-                            echo '<script>alert("User created!")</script>';
-                            header('Location: ../index.php');
-                        }
-                        else {
-                            echo '<script>confirm("User not created!")</script>';
-                            header('Location: ../adminRegister.php');
-                        }
-                    }
-                    else {
-                        echo '<script>alert("Enter password!")</script>';
-                        header('Location: ../adminRegister.php');
+        $agree= isset($_POST['is_admin']) != null ? $_POST['is_admin'] : null;
+        if ($agree == "on") {
+            if (validateregister($firstname, $lastname, $username,$password,$is_admin) == "error") {
 
-                    }
-                }
-                else {
-                    echo '<script>confirm("Enter username!")</script>';
-                    header('Location: ../adminRegister.php');
+                echo '<script class="alert alert-danger">alert ("Barcha maydonlar bosh bolishi mumkin !")</script>';
+                return 0;
+            }
 
-                }
+            $query = $db->query("INSERT INTO users (firstname, lastname, username, password, is_admin) VALUES ('$firstname', '$lastname', '$username', '$password', '$is_admin')");
+            if ($query) {
+                header("Location: ../index.php");
+            } else {
+
+                echo '<script class="alert alert-danger">alert("data not save !")</script>' . $db->error;
+
             }
-            else {
-                echo '<script>confirm("Enter lastname!")</script>';
-                header('Location: ../adminRegister.php');
-            }
+
+            return 0;
+        }else {
+
+
+            echo '<script class="alert alert-danger"  >alert("Shartlarga rozilik berish lozim!")</script>';
+
         }
-        else {
-            echo '<script>confirm("Enter Firstname!")</script>';
-            header('Location: ../adminRegister.php');
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }else {
+        echo '<script>alert("No Connection!")</script>';
+
+
     }
 
+}
+function validateregister($firstname, $lastname, $username, $password, $is_admin) {
+    $username = trim($username);
+    $password = trim($password);
+    $firstname = trim($firstname);
+    $lastname = trim($lastname);
+    $is_admin = trim($is_admin);
+
+
+    if ($username == '' || $password == '' || $firstname == '' || $lastname == '' || $is_admin == '' ) {
+        return "error";
+    }else {
+        return "success";
+    }
 }
