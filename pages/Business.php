@@ -117,7 +117,7 @@ if($connect) {
                       </a>
                     </li>
                     <li>
-                      <a href="../Admin/">
+                      <a href="./admin/">
                           <i class="iconify" data-icon="clarity:users-solid"></i>
                       </a>
                     </li>
